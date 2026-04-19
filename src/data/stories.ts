@@ -49,7 +49,7 @@ export const stories: Story[] = [
     tags: ["Delhi NCR", "Editorial", "Luxury Wedding"],
     functionsCovered: ["Welcome dinner", "Mehendi", "Wedding day", "Reception"],
     coverImage: {
-      src: "/images/showcase/showcase-04.jpg",
+      src: "/images/stories/story-01-cover.jpg",
       alt: "Outdoor wedding ceremony glowing under warm light at The Roseate.",
     },
     filmTitle: "The Roseate wedding highlight",
@@ -134,7 +134,7 @@ export const stories: Story[] = [
     tags: ["Chattarpur", "Farm Wedding", "Haldi"],
     functionsCovered: ["Haldi", "Mehendi", "Wedding ceremony", "Cocktail"],
     coverImage: {
-      src: "/images/showcase/showcase-08.jpg",
+      src: "/images/stories/story-02-cover.jpg",
       alt: "Marigold-filled haldi celebration portrait at Amaara Farms.",
     },
     filmTitle: "Amaara Farms celebration reel",
@@ -187,9 +187,9 @@ export const stories: Story[] = [
         caption: "Family presence remained central to the visual story.",
       },
       {
-        src: "/images/showcase/showcase-03.jpg",
-        alt: "Bridal party cheering with the bride in the center.",
-        caption: "Fashion-forward group frames added an editorial rhythm to the gallery.",
+        src: "/images/showcase/showcase-06.jpg",
+        alt: "In-between moment during the ceremony rituals.",
+        caption: "Quieter frames added editorial rhythm to the story.",
       },
       {
         src: "/images/showcase/showcase-09.jpg",
@@ -219,7 +219,7 @@ export const stories: Story[] = [
     tags: ["Goa", "Destination Wedding", "Seaside Portraits"],
     functionsCovered: ["Welcome dinner", "Wedding day", "Sunset portraits", "Reception"],
     coverImage: {
-      src: "/images/showcase/showcase-05.jpg",
+      src: "/images/stories/story-03-cover.jpg",
       alt: "Romantic editorial-style couple portrait with sea and breeze.",
     },
     filmTitle: "The Oberoi evening film",
@@ -277,9 +277,9 @@ export const stories: Story[] = [
         caption: "Group portraits stayed high-energy while still feeling polished.",
       },
       {
-        src: "/images/showcase/showcase-06.jpg",
-        alt: "Couple at the edge of the water with bright yellow styling.",
-        caption: "The post-wedding portraits carried softness and movement.",
+        src: "/images/showcase/showcase-11.jpg",
+        alt: "Detailed moments from the celebration.",
+        caption: "The focus on texture and atmosphere completed the visual arc.",
       },
       {
         src: "/images/showcase/showcase-10.jpg",
@@ -288,6 +288,7 @@ export const stories: Story[] = [
       },
     ],
   },
+
 ];
 
 export const storiesBySlug = Object.fromEntries(
