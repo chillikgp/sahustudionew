@@ -1,0 +1,129 @@
+"use client";
+
+import Image from "next/image";
+import { useEffect } from "react";
+
+type LightboxImage = {
+  src: string;
+  alt: string;
+  caption?: string;
+};
+
+type LightboxProps = {
+  images: LightboxImage[];
+  currentIndex: number;
+  onClose: () => void;
+  onNext: () => void;
+  onPrevious: () => void;
+};
+
+export function Lightbox({
+  images,
+  currentIndex,
+  onClose,
+  onNext,
+  onPrevious,
+}: LightboxProps) {
+  const image = images[currentIndex];
+
+  useEffect(() => {
+    const handleKeyDown = (event: KeyboardEvent) => {
+      if (event.key === "Escape") {
+        onClose();
+      }
+
+      if (event.key === "ArrowRight") {
+        onNext();
+      }
+
+      if (event.key === "ArrowLeft") {
+        onPrevious();
+      }
+    };
+
+    window.addEventListener("keydown", handleKeyDown);
+
+    return () => {
+      window.removeEventListener("keydown", handleKeyDown);
+    };
+  }, [onClose, onNext, onPrevious]);
+
+  return (
+    <div className="fixed inset-0 z-[100] flex flex-col bg-black/98 backdrop-blur-sm transition-opacity duration-300">
+      {/* Immersive Header */}
+      <div className="absolute inset-x-0 top-0 z-10 flex items-center justify-between p-6">
+        <div className="flex items-center gap-4">
+          <span className="eyebrow text-[10px] tracking-[0.3em] text-white/40">
+            {currentIndex + 1} / {images.length}
+          </span>
+        </div>
+        <button
+          type="button"
+          onClick={onClose}
+          className="group flex items-center gap-3 text-white/60 transition-colors hover:text-white"
+          aria-label="Close gallery"
+        >
+          <span className="eyebrow text-[10px] uppercase tracking-[0.2em]">Close</span>
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
+            <path d="M18 6L6 18M6 6l12 12" />
+          </svg>
+        </button>
+      </div>
+
+      <div className="relative flex h-full items-center justify-center">
+        {/* Navigation - Tablet/Desktop */}
+        <button
+          type="button"
+          onClick={onPrevious}
+          className="absolute left-8 z-10 hidden h-12 w-12 items-center justify-center rounded-full border border-white/5 bg-white/5 text-white/40 transition-all hover:bg-white/10 hover:text-white lg:flex"
+          aria-label="Previous image"
+        >
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
+            <path d="M15 18l-6-6 6-6" />
+          </svg>
+        </button>
+
+        <div className="site-container relative flex h-full items-center justify-center py-20 uppercase">
+          <div className="relative h-full w-full">
+            <Image
+              src={image.src}
+              alt={image.alt}
+              fill
+              sizes="100vw"
+              className="object-contain"
+              priority
+            />
+          </div>
+        </div>
+
+        <button
+          type="button"
+          onClick={onNext}
+          className="absolute right-8 z-10 hidden h-12 w-12 items-center justify-center rounded-full border border-white/5 bg-white/5 text-white/40 transition-all hover:bg-white/10 hover:text-white lg:flex"
+          aria-label="Next image"
+        >
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
+            <path d="M9 18l6-6-6-6" />
+          </svg>
+        </button>
+      </div>
+
+      {/* Caption Bar */}
+      {image.caption && (
+        <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/80 to-transparent pb-12 pt-20">
+          <div className="site-container px-6 text-center">
+            <p className="mx-auto max-w-2xl font-editorial text-lg leading-relaxed text-white/80">
+              {image.caption}
+            </p>
+          </div>
+        </div>
+      )}
+
+      {/* Mobile Navigation Area (Tap Zones) */}
+      <div className="absolute inset-0 grid grid-cols-2 lg:hidden">
+        <div className="h-full w-full pointer-events-auto" onClick={onPrevious} />
+        <div className="h-full w-full pointer-events-auto" onClick={onNext} />
+      </div>
+    </div>
+  );
+}
