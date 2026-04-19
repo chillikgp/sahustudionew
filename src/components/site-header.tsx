@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useState } from "react";
 import { navLinks, siteConfig } from "@/data/site";
@@ -27,6 +28,8 @@ export function SiteHeader({ overlay = true }: SiteHeaderProps) {
     ? "absolute inset-x-0 top-0 z-30"
     : "fixed inset-x-0 top-0 z-40 border-b border-[var(--line)] bg-[rgba(248,242,234,0.88)] backdrop-blur-xl";
 
+  const logoClass = overlay ? "" : "grayscale opacity-90";
+
   return (
     <>
       <header className={headerClass}>
@@ -48,14 +51,18 @@ export function SiteHeader({ overlay = true }: SiteHeaderProps) {
             {/* Center Logo */}
             <Link
               href="/"
-              className={`flex flex-col items-center px-4 ${
-                overlay ? "text-white" : "text-[var(--ink)]"
-              }`}
+              className="flex flex-col items-center px-4"
               aria-label="Sahu Studio home"
             >
-              <span className="font-editorial text-5xl leading-none sm:text-6xl">
-                SS
-              </span>
+              <div className="relative h-14 w-14 lg:h-16 lg:w-16">
+                <Image
+                  src="/images/brand-logo.png"
+                  alt={siteConfig.name}
+                  fill
+                  className={`object-contain transition-all duration-500 ${logoClass}`}
+                  priority
+                />
+              </div>
             </Link>
 
             {/* Right Navigation */}
@@ -104,11 +111,15 @@ export function SiteHeader({ overlay = true }: SiteHeaderProps) {
 
           {/* Mobile Header Structure */}
           <div className="flex w-full items-center justify-between lg:hidden">
-            <Link
-              href="/"
-              className={overlay ? "text-white" : "text-[var(--ink)]"}
-            >
-              <span className="font-editorial text-4xl">SS</span>
+            <Link href="/" aria-label="Sahu Studio home">
+              <div className="relative h-12 w-12">
+                <Image
+                  src="/images/brand-logo.png"
+                  alt={siteConfig.name}
+                  fill
+                  className={`object-contain transition-all duration-500 ${logoClass}`}
+                />
+              </div>
             </Link>
             <button
               type="button"
@@ -130,8 +141,15 @@ export function SiteHeader({ overlay = true }: SiteHeaderProps) {
           <div className="site-container flex min-h-screen flex-col py-6 text-white">
             <div className="flex items-center justify-between">
               <div>
-                <p className="font-editorial text-4xl">SS</p>
-                <p className="eyebrow text-[10px] tracking-[0.3em] text-white/60">
+                <div className="relative h-12 w-12">
+                  <Image
+                    src="/images/brand-logo.png"
+                    alt={siteConfig.name}
+                    fill
+                    className="object-contain"
+                  />
+                </div>
+                <p className="eyebrow mt-1 text-[10px] tracking-[0.3em] text-white/60">
                   {siteConfig.name}
                 </p>
               </div>
