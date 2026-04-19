@@ -35,7 +35,7 @@ const BLUR_PLACEHOLDER = "data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTAwJSIgaGVp
 
 export const showcasePhotos = [
   {
-    src: "/images/showcase/1D4A8717.JPG",
+    src: "/images/showcase/1D4A8717 Medium.jpeg",
     width: 4000,
     height: 6000,
     blurDataURL: BLUR_PLACEHOLDER,
@@ -45,7 +45,7 @@ export const showcasePhotos = [
     location: "Delhi",
   },
   {
-    src: "/images/showcase/1D4A8718.JPG",
+    src: "/images/showcase/1D4A8718 Medium.jpeg",
     width: 4000,
     height: 6000,
     blurDataURL: BLUR_PLACEHOLDER,
@@ -55,7 +55,7 @@ export const showcasePhotos = [
     location: "Delhi",
   },
   {
-    src: "/images/showcase/1D4A8724.JPG",
+    src: "/images/showcase/1D4A8724 Medium.jpeg",
     width: 6000,
     height: 4000,
     blurDataURL: BLUR_PLACEHOLDER,
@@ -65,7 +65,7 @@ export const showcasePhotos = [
     location: "New Delhi",
   },
   {
-    src: "/images/showcase/1D4A8730.JPG",
+    src: "/images/showcase/1D4A8730 Medium.jpeg",
     width: 6000,
     height: 4000,
     blurDataURL: BLUR_PLACEHOLDER,
@@ -75,7 +75,7 @@ export const showcasePhotos = [
     location: "Gurugram",
   },
   {
-    src: "/images/showcase/1D4A8739.JPG",
+    src: "/images/showcase/1D4A8739 Medium.jpeg",
     width: 4000,
     height: 6000,
     blurDataURL: BLUR_PLACEHOLDER,
@@ -85,7 +85,7 @@ export const showcasePhotos = [
     location: "Noida",
   },
   {
-    src: "/images/showcase/1D4A8740.JPG",
+    src: "/images/showcase/1D4A8740 Medium.jpeg",
     width: 4000,
     height: 6000,
     blurDataURL: BLUR_PLACEHOLDER,
@@ -95,7 +95,7 @@ export const showcasePhotos = [
     location: "Delhi",
   },
   {
-    src: "/images/showcase/1D4A8741.JPG",
+    src: "/images/showcase/1D4A8741 Medium.jpeg",
     width: 4000,
     height: 6000,
     blurDataURL: BLUR_PLACEHOLDER,
@@ -105,7 +105,7 @@ export const showcasePhotos = [
     location: "Delhi",
   },
   {
-    src: "/images/showcase/1D4A8743.JPG",
+    src: "/images/showcase/1D4A8743 Medium.jpeg",
     width: 4000,
     height: 6000,
     blurDataURL: BLUR_PLACEHOLDER,
@@ -115,7 +115,7 @@ export const showcasePhotos = [
     location: "The Roseate",
   },
   {
-    src: "/images/showcase/1D4A8749.JPG",
+    src: "/images/showcase/1D4A8749 Medium.jpeg",
     width: 4000,
     height: 6000,
     blurDataURL: BLUR_PLACEHOLDER,
@@ -125,7 +125,7 @@ export const showcasePhotos = [
     location: "Delhi",
   },
   {
-    src: "/images/showcase/1D4A8751.JPG",
+    src: "/images/showcase/1D4A8751 Medium.jpeg",
     width: 4000,
     height: 6000,
     blurDataURL: BLUR_PLACEHOLDER,
@@ -135,7 +135,7 @@ export const showcasePhotos = [
     location: "Delhi",
   },
   {
-    src: "/images/showcase/1D4A8755.JPG",
+    src: "/images/showcase/1D4A8755 Medium.jpeg",
     width: 4000,
     height: 6000,
     blurDataURL: BLUR_PLACEHOLDER,
@@ -145,7 +145,7 @@ export const showcasePhotos = [
     location: "Gurugram",
   },
   {
-    src: "/images/showcase/1D4A8765.JPG",
+    src: "/images/showcase/1D4A8765 Medium.jpeg",
     width: 6000,
     height: 4000,
     blurDataURL: BLUR_PLACEHOLDER,
@@ -155,7 +155,7 @@ export const showcasePhotos = [
     location: "Noida",
   },
   {
-    src: "/images/showcase/1D4A8769.JPG",
+    src: "/images/showcase/1D4A8769 Medium.jpeg",
     width: 6000,
     height: 4000,
     blurDataURL: BLUR_PLACEHOLDER,
@@ -165,7 +165,7 @@ export const showcasePhotos = [
     location: "Delhi",
   },
   {
-    src: "/images/showcase/1D4A8770.JPG",
+    src: "/images/showcase/1D4A8770 Medium.jpeg",
     width: 6000,
     height: 4000,
     blurDataURL: BLUR_PLACEHOLDER,
@@ -175,7 +175,7 @@ export const showcasePhotos = [
     location: "Delhi NCR",
   },
   {
-    src: "/images/showcase/1D4A8781.JPG",
+    src: "/images/showcase/1D4A8781 Medium.jpeg",
     width: 4000,
     height: 6000,
     blurDataURL: BLUR_PLACEHOLDER,
