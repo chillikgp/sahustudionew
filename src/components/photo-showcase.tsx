@@ -10,46 +10,79 @@ import { SectionIntro } from "./section-intro";
 export function PhotoShowcase() {
   const [currentIndex, setCurrentIndex] = useState<number | null>(null);
 
+  const photos = useMemo(() => showcasePhotos.slice(0, 14), []);
+  
+  // Define 15 tiles (14 photos + 1 quote card at index 7)
+  const gridItems = useMemo(() => {
+    const items = [...photos];
+    const quoteCard = { isQuote: true };
+    items.splice(7, 0, quoteCard as any);
+    return items;
+  }, [photos]);
+
   const lightboxImages = useMemo(
     () =>
-      showcasePhotos.map((photo) => ({
+      photos.map((photo) => ({
         src: photo.src,
         alt: photo.alt,
         caption: photo.caption,
       })),
-    [],
+    [photos],
   );
 
+  const openLightbox = (gridIndex: number) => {
+    if (gridIndex === 7) return; 
+    const photoIndex = gridIndex < 7 ? gridIndex : gridIndex - 1;
+    setCurrentIndex(photoIndex);
+  };
+
   return (
-    <section id="photos" className="bg-[var(--ink)] py-5 lg:py-8">
-      <div className="site-container">
-        <div className="columns-1 gap-4 sm:columns-2 lg:columns-4">
-          {showcasePhotos.map((photo, index) => (
-            <div 
-              key={photo.src}
-              className="break-inside-avoid mb-4 reveal-up"
-            >
-              <button
-                type="button"
-                onClick={() => setCurrentIndex(index)}
-                className="group relative w-full overflow-hidden bg-[var(--paper)]"
+    <section id="photos" className="relative z-10 overflow-hidden bg-[var(--paper)] py-0">
+      {/* Full-width Viewport Escape */}
+      <div 
+        style={{ width: "100vw", marginLeft: "calc(50% - 50vw)" }}
+        className="px-0"
+      >
+        <div className="grid grid-cols-2 gap-[2px] md:grid-cols-3 lg:grid-cols-5">
+          {gridItems.map((item, index) => {
+            if (item.isQuote) {
+              return (
+                <div 
+                  key="quote-card"
+                  className="reveal-up flex aspect-square flex-col items-center justify-center bg-[var(--paper)] px-8 text-center"
+                >
+                  <p className="font-editorial text-2xl leading-[1.3] text-[var(--ink)] lg:text-3xl">
+                    Celebrating love<br />
+                    with every frame
+                  </p>
+                </div>
+              );
+            }
+
+            return (
+              <div 
+                key={item.src}
+                className="reveal-up aspect-square overflow-hidden"
               >
-                <Image
-                  src={photo.src}
-                  alt={photo.alt}
-                  width={photo.width}
-                  height={photo.height}
-                  sizes="(min-width: 1024px) 25vw, (min-width: 768px) 50vw, 100vw"
-                  className="w-full h-auto transition duration-700 group-hover:scale-105"
-                  placeholder="blur"
-                  blurDataURL={photo.blurDataURL}
-                  loading="lazy"
-                />
-                {/* Subtle hover overlay */}
-                <div className="absolute inset-0 bg-black/0 transition-colors duration-500 group-hover:bg-black/10" />
-              </button>
-            </div>
-          ))}
+                <button
+                  type="button"
+                  onClick={() => openLightbox(index)}
+                  className="relative h-full w-full overflow-hidden outline-none block"
+                >
+                  <Image
+                    src={item.src}
+                    alt={item.alt}
+                    fill
+                    sizes="(max-width: 640px) 50vw, (max-width: 1024px) 33vw, 20vw"
+                    className="object-cover"
+                    placeholder="blur"
+                    blurDataURL={item.blurDataURL}
+                    loading="lazy"
+                  />
+                </button>
+              </div>
+            );
+          })}
         </div>
       </div>
 

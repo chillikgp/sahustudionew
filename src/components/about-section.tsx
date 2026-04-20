@@ -66,7 +66,7 @@ function StatCounter({ value, label }: { value: string; label: string }) {
 
 export function AboutSection() {
   return (
-    <section id="about" className="bg-white pt-0 pb-20 lg:pb-32">
+    <section id="about" className="bg-[var(--paper)] pt-0 pb-20 lg:pb-32">
       {/* Top Header Strip */}
       <div className="border-y border-[var(--line)] py-5 mb-6 lg:mb-10">
         <div className="site-container text-center">
