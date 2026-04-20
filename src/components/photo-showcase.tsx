@@ -45,7 +45,7 @@ export function PhotoShowcase() {
       >
         <div className="grid grid-cols-2 gap-[2px] md:grid-cols-3 lg:grid-cols-5">
           {gridItems.map((item, index) => {
-            if (item.isQuote) {
+            if ('isQuote' in item) {
               return (
                 <div 
                   key="quote-card"
