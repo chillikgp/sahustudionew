@@ -168,6 +168,7 @@ export default async function StoryPage({ params }: StoryPageProps) {
                   sizes="(max-width: 1024px) 100vw, 55vw"
                   className="object-cover"
                   priority
+                  unoptimized
                 />
               </div>
 

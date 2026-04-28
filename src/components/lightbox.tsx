@@ -1,7 +1,8 @@
 "use client";
 
 import Image from "next/image";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
+import { createPortal } from "react-dom";
 
 type LightboxImage = {
   src: string;
@@ -24,9 +25,14 @@ export function Lightbox({
   onNext,
   onPrevious,
 }: LightboxProps) {
+  const [mounted, setMounted] = useState(false);
   const image = images[currentIndex];
 
   useEffect(() => {
+    setMounted(true);
+    // Prevent scrolling when lightbox is open
+    document.body.style.overflow = "hidden";
+    
     const handleKeyDown = (event: KeyboardEvent) => {
       if (event.key === "Escape") {
         onClose();
@@ -44,12 +50,16 @@ export function Lightbox({
     window.addEventListener("keydown", handleKeyDown);
 
     return () => {
+      setMounted(false);
+      document.body.style.overflow = "";
       window.removeEventListener("keydown", handleKeyDown);
     };
   }, [onClose, onNext, onPrevious]);
 
-  return (
-    <div className="fixed inset-0 z-[100] flex flex-col bg-black/98 backdrop-blur-sm transition-opacity duration-300">
+  if (!mounted) return null;
+
+  return createPortal(
+    <div className="fixed inset-0 z-[1000] flex flex-col bg-black/98 backdrop-blur-sm transition-opacity duration-300">
       {/* Immersive Header */}
       <div className="absolute inset-x-0 top-0 z-10 flex items-center justify-between p-6">
         <div className="flex items-center gap-4">
@@ -92,6 +102,7 @@ export function Lightbox({
               sizes="100vw"
               className="object-contain"
               priority
+              unoptimized
             />
           </div>
         </div>
@@ -124,6 +135,8 @@ export function Lightbox({
         <div className="h-full w-full pointer-events-auto" onClick={onPrevious} />
         <div className="h-full w-full pointer-events-auto" onClick={onNext} />
       </div>
-    </div>
+    </div>,
+    document.body
   );
 }
+

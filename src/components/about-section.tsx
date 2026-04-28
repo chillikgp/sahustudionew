@@ -70,8 +70,17 @@ export function AboutSection() {
       {/* Top Header Strip */}
       <div className="border-y border-[var(--line)] py-5 mb-6 lg:mb-10">
         <div className="site-container text-center">
-          <p className="eyebrow text-[11px] uppercase tracking-[0.3em] text-[var(--ink-muted)]">
-            Delhi NCR Wedding Photographer | Sahu Studio
+          <p className="eyebrow text-[11px] uppercase tracking-[0.3em] text-[var(--ink-muted)] leading-relaxed">
+            Delhi NCR Wedding Photographer&ensp;·&ensp;Sahu Studio&ensp;·&ensp;
+            <a
+              href="https://maps.app.goo.gl/79BzCzy5AdCBw7sf9"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-block text-[var(--ink-muted)] transition-opacity duration-200 hover:opacity-60"
+              style={{ textDecoration: "none" }}
+            >
+              4.6★ Google Rating
+            </a>
           </p>
         </div>
       </div>
@@ -88,6 +97,7 @@ export function AboutSection() {
                 sizes="(max-width: 1024px) 100vw, 40vw"
                 className="object-cover"
                 priority
+                unoptimized
               />
             </div>
           </div>
@@ -99,22 +109,29 @@ export function AboutSection() {
                 About Sahu Studio
               </p>
               <h2 className="font-editorial mt-3 text-4xl leading-[1.1] text-[var(--ink)] sm:text-5xl lg:text-4xl">
-                Timeless, Classic & Editorial{" "}
-                <span className="block italic">Wedding Photography</span>
+                Elegant, Timeless & Story-Driven
               </h2>
 
-              <p className="mt-6 text-xl font-medium leading-relaxed text-[var(--ink)]">
-                Capturing authentic moments that you will cherish through
-                generations.
+              <p className="mt-8 text-xl font-medium leading-relaxed text-[var(--ink)]">
+                Capturing real emotions, beautiful details, and unforgettable moments 
+                that will be cherished for generations.
               </p>
 
-              <div className="mt-8 space-y-6 text-base leading-relaxed text-[var(--ink-soft)] lg:text-lg">
+              <div className="mt-10 space-y-6 text-base leading-relaxed text-[var(--ink-soft)] lg:text-lg">
+                <p className="font-medium text-[var(--ink)] opacity-90">
+                  Every great story begins with a vision. Ours began in 1982.
+                </p>
+                
                 <p>
-                  Sahu Studio is a Delhi NCR wedding photography and
-                  cinematography house built on legacy, calm execution, and
-                  editorial taste. We approach every celebration with the polish
-                  of a luxury production and the sensitivity of a family
-                  archive.
+                  Hi, I’m Gaurav Sahu, owner of Sahu Studio in Karkardooma, East Delhi. What started 
+                  as a traditional photography studio has grown into a trusted wedding photography 
+                  and cinematography brand serving families across Delhi NCR.
+                </p>
+
+                <p>
+                  We specialise in candid wedding photography, cinematic films, pre-wedding shoots, 
+                  engagement coverage, and family celebrations. By combining decades of experience 
+                  with modern creativity, we create timeless images and films filled with emotion.
                 </p>
               </div>
             </div>

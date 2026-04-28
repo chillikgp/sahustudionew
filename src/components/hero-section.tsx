@@ -14,6 +14,7 @@ export function HeroSection() {
           sizes="100vw"
           className="object-cover"
           priority
+          unoptimized
         />
         <video
           className="absolute inset-0 h-full w-full object-cover"

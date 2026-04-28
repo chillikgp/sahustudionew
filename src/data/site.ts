@@ -25,17 +25,15 @@ export const navLinks = [
 ] as const;
 
 export const stats = [
-  { value: "900+", label: "Weddings covered" },
-  { value: "42", label: "Years in business" },
-  { value: "18", label: "Cities covered" },
-  { value: "1,250+", label: "Films delivered" },
+  { value: "1000+", label: "Weddings covered" },
+  { value: "44", label: "Years in business" },
 ] as const;
 
 const BLUR_PLACEHOLDER = "data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIiB2aWV3Qm94PSIwIDAgMSAxIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciPjxyZWN0IHdpZHRoPSIxMDAlIiBoZWlnaHQ9IjEwMCUiIGZpbGw9IiMzMDI2MjAiLz48L3N2Zz4=";
 
 export const showcasePhotos = [
   {
-    src: "/images/showcase/showcase-02.jpg",
+    src: "/images/showcase/showcase-01.jpg",
     width: 1280,
     height: 853,
     blurDataURL: BLUR_PLACEHOLDER,
@@ -45,7 +43,7 @@ export const showcasePhotos = [
     location: "Delhi",
   },
   {
-    src: "/images/showcase/showcase-03.jpg",
+    src: "/images/showcase/showcase-02.jpg",
     width: 1280,
     height: 853,
     blurDataURL: BLUR_PLACEHOLDER,
@@ -55,7 +53,7 @@ export const showcasePhotos = [
     location: "Delhi",
   },
   {
-    src: "/images/showcase/showcase-04.jpg",
+    src: "/images/showcase/showcase-03.jpg",
     width: 1280,
     height: 853,
     blurDataURL: BLUR_PLACEHOLDER,
@@ -65,7 +63,7 @@ export const showcasePhotos = [
     location: "New Delhi",
   },
   {
-    src: "/images/showcase/showcase-05.jpg",
+    src: "/images/showcase/showcase-04.jpg",
     width: 1280,
     height: 853,
     blurDataURL: BLUR_PLACEHOLDER,
@@ -75,7 +73,7 @@ export const showcasePhotos = [
     location: "Gurugram",
   },
   {
-    src: "/images/showcase/showcase-06.jpg",
+    src: "/images/showcase/showcase-05.jpg",
     width: 853,
     height: 1280,
     blurDataURL: BLUR_PLACEHOLDER,
@@ -85,7 +83,7 @@ export const showcasePhotos = [
     location: "Noida",
   },
   {
-    src: "/images/showcase/showcase-07.jpg",
+    src: "/images/showcase/showcase-06.jpg",
     width: 853,
     height: 1280,
     blurDataURL: BLUR_PLACEHOLDER,
@@ -95,7 +93,7 @@ export const showcasePhotos = [
     location: "Delhi",
   },
   {
-    src: "/images/showcase/showcase-08.jpg",
+    src: "/images/showcase/showcase-07.jpg",
     width: 1280,
     height: 853,
     blurDataURL: BLUR_PLACEHOLDER,
@@ -105,7 +103,7 @@ export const showcasePhotos = [
     location: "Delhi",
   },
   {
-    src: "/images/showcase/showcase-09.jpg",
+    src: "/images/showcase/showcase-08.jpg",
     width: 1280,
     height: 853,
     blurDataURL: BLUR_PLACEHOLDER,
@@ -115,7 +113,7 @@ export const showcasePhotos = [
     location: "The Roseate",
   },
   {
-    src: "/images/showcase/showcase-10.jpg",
+    src: "/images/showcase/showcase-09.jpg",
     width: 1280,
     height: 853,
     blurDataURL: BLUR_PLACEHOLDER,
@@ -125,7 +123,7 @@ export const showcasePhotos = [
     location: "Delhi",
   },
   {
-    src: "/images/showcase/showcase-11.jpg",
+    src: "/images/showcase/showcase-10.jpg",
     width: 1280,
     height: 853,
     blurDataURL: BLUR_PLACEHOLDER,
@@ -135,7 +133,7 @@ export const showcasePhotos = [
     location: "Delhi",
   },
   {
-    src: "/images/showcase/showcase-12.jpg",
+    src: "/images/showcase/showcase-11.jpg",
     width: 1280,
     height: 853,
     blurDataURL: BLUR_PLACEHOLDER,
@@ -145,7 +143,7 @@ export const showcasePhotos = [
     location: "New Delhi",
   },
   {
-    src: "/images/showcase/showcase-13.jpg",
+    src: "/images/showcase/showcase-12.jpg",
     width: 1280,
     height: 853,
     blurDataURL: BLUR_PLACEHOLDER,
@@ -155,7 +153,7 @@ export const showcasePhotos = [
     location: "Noida",
   },
   {
-    src: "/images/showcase/showcase-14.jpg",
+    src: "/images/showcase/showcase-13.jpg",
     width: 853,
     height: 1280,
     blurDataURL: BLUR_PLACEHOLDER,
@@ -165,7 +163,7 @@ export const showcasePhotos = [
     location: "Gurugram",
   },
   {
-    src: "/images/showcase/showcase-15.jpg",
+    src: "/images/showcase/showcase-14.jpg",
     width: 1280,
     height: 853,
     blurDataURL: BLUR_PLACEHOLDER,
@@ -177,57 +175,61 @@ export const showcasePhotos = [
 ] as const;
 
 export const featuredFilm = {
-  title: "The Oberoi Afterglow",
+  title: "Beyond the Vows",
   summary:
-    "A refined, detail-led short film that leans into fashion, texture, and restrained emotional pacing. Crafted for those who value the quiet, powerful moments.",
-  poster: "/images/video/video-thumb-01.jpg",
+    "A cinematic wedding film capturing heartfelt moments, elegant details, and timeless emotions. Crafted for couples who value authentic memories and beautifully preserved celebrations.",
+  poster: "/images/video/feature-video.jpg",
   videoSrc: "/videos/hero1.mp4",
-  youtubeId: "DU4Rl8iRfMc",
+  youtubeId: "612zIagB65M?t=6",
 } as const;
 
 export const filmCollection = [
   {
-    id: "roseate-teaser",
-    title: "Aria & Kabir: The Teaser",
-    collection: "Cinematic edit",
+    id: "ayush-anchal-wedding",
+    title: "Ayush & Anchal: The Palace Vows",
+    collection: "Wedding",
     summary:
-      "A warm, intimate teaser edit designed for elegant Delhi celebrations and twilight ceremonies.",
+      "A cinematic palace wedding film capturing elegant rituals, heartfelt vows, and timeless celebration moments.",
     poster: "/images/video/video-thumb-01.jpg",
-    posterAlt: "Wedding film cover featuring a bride and groom.",
-    youtubeId: "7h6H5mqZ1Dk",
-    duration: "02:14",
+    posterAlt:
+      "Bride and groom portrait during a palace wedding ceremony with regal decor.",
+    youtubeId: "2DmUvBwv1vE?t=10",
+    duration: "6:41",
   },
   {
-    id: "amaara-teaser",
-    title: "Amaara Farms: Celebration Cut",
-    collection: "Story reel",
+    id: "kedar-vijeyata-prewedding",
+    title: "Kedar & Vijeyata: Dilli 6",
+    collection: "Pre Wedding",
     summary:
-      "A more energetic cut built around rituals, community, and the playful pace of a two-day celebration.",
+      "A romantic pre-wedding film featuring candid moments, rain romance, and old Delhi charm.",
     poster: "/images/video/video-thumb-02.jpg",
-    posterAlt: "Close portrait poster of a bride and groom.",
-    youtubeId: "YYcvbmRaGb8",
-    duration: "01:48",
+    posterAlt:
+      "Couple sharing a romantic pre-wedding moment under an umbrella in the rain.",
+    youtubeId: "in4RMPlieJc?t=11",
+    duration: "6:06",
   },
   {
-    id: "oberoi-teaser",
-    title: "The Oberoi: Midnight Vows",
-    collection: "Editorial short",
+    id: "akshay-diksha-prewedding",
+    title: "Akshay & Diksha: Madly in Love",
+    collection: "Pre Wedding",
     summary:
-      "A refined, detail-led short film that leans into fashion, texture, and restrained emotional pacing.",
+      "A stylish pre-wedding film blending romance, editorial frames, and modern studio storytelling.",
     poster: "/images/video/video-thumb-03.jpg",
-    posterAlt: "A family portrait used as a wedding film poster.",
-    youtubeId: "0t4rp-3tLUg",
-    duration: "02:02",
+    posterAlt:
+      "Couple posing during a luxury pre-wedding shoot in an elegant European-style studio.",
+    youtubeId: "LbFpZOKD_Vc",
+    duration: "4:36",
   },
   {
-    id: "intimate-vows",
-    title: "Intimate Vows, Modern Finish",
-    collection: "Highlight reel",
+    id: "abhishek-purvi-wedding",
+    title: "Abhishek & Purvi: The Beginning",
+    collection: "Wedding",
     summary:
-      "An intimate highlight reel for smaller gatherings that still deserve the same luxury visual treatment.",
+      "A heartfelt wedding film capturing joyful ceremonies, family emotions, and unforgettable moments.",
     poster: "/images/video/video-thumb-04.jpg",
-    posterAlt: "A tabletop detail frame used as a supporting video card poster.",
+    posterAlt:
+      "Bride and groom during a grand wedding celebration inside a banquet venue.",
     youtubeId: "DU4Rl8iRfMc",
-    duration: "01:36",
+    duration: "3:02",
   },
 ] as const;

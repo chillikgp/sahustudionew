@@ -61,6 +61,7 @@ export function SiteHeader({ overlay = true }: SiteHeaderProps) {
                   fill
                   className={`object-contain transition-all duration-500 ${logoClass}`}
                   priority
+                  unoptimized
                 />
               </div>
             </Link>
@@ -118,6 +119,7 @@ export function SiteHeader({ overlay = true }: SiteHeaderProps) {
                   alt={siteConfig.name}
                   fill
                   className={`object-contain transition-all duration-500 ${logoClass}`}
+                  unoptimized
                 />
               </div>
             </Link>
@@ -147,6 +149,7 @@ export function SiteHeader({ overlay = true }: SiteHeaderProps) {
                     alt={siteConfig.name}
                     fill
                     className="object-contain"
+                    unoptimized
                   />
                 </div>
                 <p className="eyebrow mt-1 text-[10px] tracking-[0.3em] text-white/60">

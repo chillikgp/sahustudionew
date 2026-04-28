@@ -78,6 +78,7 @@ export function PhotoShowcase() {
                     placeholder="blur"
                     blurDataURL={item.blurDataURL}
                     loading="lazy"
+                    unoptimized
                   />
                 </button>
               </div>
