@@ -42,7 +42,7 @@ export function SiteHeader({ overlay = true }: SiteHeaderProps) {
             {/* Left Navigation */}
             <nav className="flex items-center justify-end gap-10">
               {navLinks.slice(0, 3).map((link) => {
-                const isActive = pathname === link.href || (link.href !== "/" && link.href !== "/#about" && pathname.startsWith(link.href));
+                const isActive = pathname === (link.href as string) || ((link.href as string) !== "/" && (link.href as string) !== "/#about" && pathname.startsWith(link.href as string));
                 return (
                   <Link
                     key={link.label}
@@ -69,7 +69,7 @@ export function SiteHeader({ overlay = true }: SiteHeaderProps) {
               className="flex flex-col items-center px-4"
               aria-label="Sahu Studio home"
             >
-              <div className="relative h-14 w-14 lg:h-16 lg:w-16">
+              <div className="relative h-10 w-10 lg:h-12 lg:w-12">
                 <Image
                   src="/images/brand-logo.png"
                   alt={siteConfig.name}
@@ -84,7 +84,7 @@ export function SiteHeader({ overlay = true }: SiteHeaderProps) {
             {/* Right Navigation */}
             <nav className="flex items-center gap-10">
               {navLinks.slice(3).map((link) => {
-                const isActive = pathname === link.href || (link.href !== "/" && link.href !== "/#about" && pathname.startsWith(link.href));
+                const isActive = pathname === (link.href as string) || ((link.href as string) !== "/" && (link.href as string) !== "/#about" && pathname.startsWith(link.href as string));
                 const isExternal = link.href.startsWith("http") || link.href.startsWith("mailto:");
                 
                 if (isExternal) {
@@ -126,7 +126,7 @@ export function SiteHeader({ overlay = true }: SiteHeaderProps) {
           {/* Mobile Header Structure */}
           <div className="flex w-full items-center justify-between lg:hidden">
             <Link href="/" aria-label="Sahu Studio home">
-              <div className="relative h-12 w-12">
+              <div className="relative h-10 w-10">
                 <Image
                   src="/images/brand-logo.png"
                   alt={siteConfig.name}
@@ -182,7 +182,7 @@ export function SiteHeader({ overlay = true }: SiteHeaderProps) {
             </div>
             <nav className="mt-16 flex flex-col gap-6">
               {navLinks.map((link) => {
-                const isActive = pathname === link.href || (link.href !== "/" && link.href !== "/#about" && pathname.startsWith(link.href));
+                const isActive = pathname === (link.href as string) || ((link.href as string) !== "/" && (link.href as string) !== "/#about" && pathname.startsWith(link.href as string));
                 const isExternal = link.href.startsWith("http") || link.href.startsWith("mailto:");
 
                 if (isExternal) {
