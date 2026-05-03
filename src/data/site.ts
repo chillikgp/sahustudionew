@@ -453,6 +453,7 @@ export const showcasePhotos = [
 ] as const;
 
 export const featuredFilm = {
+  id: "featured-film",
   title: "Beyond the Vows",
   summary:
     "A cinematic wedding film capturing heartfelt moments, elegant details, and timeless emotions. Crafted for couples who value authentic memories and beautifully preserved celebrations.",

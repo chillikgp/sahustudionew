@@ -1,3 +1,5 @@
+"use client";
+
 import Link from "next/link";
 import { siteConfig, navLinks } from "@/data/site";
 import { trackEvent } from "@/lib/gtag";
