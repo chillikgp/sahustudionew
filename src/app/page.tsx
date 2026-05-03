@@ -1,7 +1,6 @@
 import { AboutSection } from "@/components/about-section";
 import { HeroSection } from "@/components/hero-section";
 import { PhotoShowcase } from "@/components/photo-showcase";
-import { SiteFooter } from "@/components/site-footer";
 import { StoriesSection } from "@/components/stories-section";
 import { VideoShowcase } from "@/components/video-showcase";
 import { siteConfig } from "@/data/site";
@@ -44,7 +43,6 @@ export default function Home() {
         <StoriesSection />
         <VideoShowcase />
       </main>
-      <SiteFooter />
     </>
   );
 }

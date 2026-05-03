@@ -3,8 +3,9 @@
 import Image from "next/image";
 import Link from "next/link";
 import { useMemo, useState } from "react";
-import { showcasePhotos } from "@/data/site";
+import { showcasePhotos, siteConfig } from "@/data/site";
 import { Lightbox } from "./lightbox";
+import { trackEvent } from "@/lib/gtag";
 import { SectionIntro } from "./section-intro";
 
 export function PhotoShowcase() {
@@ -66,7 +67,10 @@ export function PhotoShowcase() {
               >
                 <button
                   type="button"
-                  onClick={() => openLightbox(index)}
+                  onClick={() => {
+                    openLightbox(index);
+                    trackEvent("image_view", "engagement", item.alt || `showcase_image_${index}`);
+                  }}
                   className="relative h-full w-full overflow-hidden outline-none block"
                 >
                   <Image

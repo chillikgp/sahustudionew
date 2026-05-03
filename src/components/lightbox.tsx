@@ -1,7 +1,7 @@
 "use client";
 
 import Image from "next/image";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 import { createPortal } from "react-dom";
 
 type LightboxImage = {
@@ -27,6 +27,33 @@ export function Lightbox({
 }: LightboxProps) {
   const [mounted, setMounted] = useState(false);
   const image = images[currentIndex];
+  
+  // Swipe support
+  const touchStartX = useRef<number | null>(null);
+  const touchEndX = useRef<number | null>(null);
+  const minSwipeDistance = 50;
+
+  const onTouchStart = (e: React.TouchEvent) => {
+    touchEndX.current = null;
+    touchStartX.current = e.targetTouches[0].clientX;
+  };
+
+  const onTouchMove = (e: React.TouchEvent) => {
+    touchEndX.current = e.targetTouches[0].clientX;
+  };
+
+  const onTouchEnd = () => {
+    if (!touchStartX.current || !touchEndX.current) return;
+    const distance = touchStartX.current - touchEndX.current;
+    const isLeftSwipe = distance > minSwipeDistance;
+    const isRightSwipe = distance < -minSwipeDistance;
+
+    if (isLeftSwipe) {
+      onNext();
+    } else if (isRightSwipe) {
+      onPrevious();
+    }
+  };
 
   useEffect(() => {
     setMounted(true);
@@ -59,7 +86,12 @@ export function Lightbox({
   if (!mounted) return null;
 
   return createPortal(
-    <div className="fixed inset-0 z-[1000] flex flex-col bg-black/98 backdrop-blur-sm transition-opacity duration-300">
+    <div 
+      className="fixed inset-0 z-[1000] flex flex-col bg-black/98 backdrop-blur-sm transition-opacity duration-300"
+      onTouchStart={onTouchStart}
+      onTouchMove={onTouchMove}
+      onTouchEnd={onTouchEnd}
+    >
       {/* Immersive Header */}
       <div className="absolute inset-x-0 top-0 z-10 flex items-center justify-between p-6">
         <div className="flex items-center gap-4">

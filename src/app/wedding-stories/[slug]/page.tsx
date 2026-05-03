@@ -2,7 +2,6 @@ import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import { SiteFooter } from "@/components/site-footer";
 import { SiteHeader } from "@/components/site-header";
 import { StoryGallery } from "@/components/story-gallery";
 import { siteConfig } from "@/data/site";
@@ -34,13 +33,13 @@ export async function generateMetadata({
     title,
     description: story.seoDescription,
     alternates: {
-      canonical: `${siteConfig.url}/stories/${story.slug}`,
+      canonical: `${siteConfig.url}/wedding-stories/${story.slug}`,
     },
     openGraph: {
       type: "article",
       title,
       description: story.seoDescription,
-      url: `${siteConfig.url}/stories/${story.slug}`,
+      url: `${siteConfig.url}/wedding-stories/${story.slug}`,
       images: [
         {
           url: story.coverImage.src,
@@ -85,7 +84,7 @@ export default async function StoryPage({ params }: StoryPageProps) {
         url: `${siteConfig.url}/images/hero/hero-poster.jpg`,
       },
     },
-    mainEntityOfPage: `${siteConfig.url}/stories/${story.slug}`,
+    mainEntityOfPage: `${siteConfig.url}/wedding-stories/${story.slug}`,
     articleSection: "Wedding Stories",
   };
 
@@ -103,7 +102,7 @@ export default async function StoryPage({ params }: StoryPageProps) {
         <header className="pb-20 lg:pb-32">
           <div className="site-container">
             <Link
-              href="/#stories"
+              href="/wedding-stories"
               className="group inline-flex items-center gap-2 text-[10px] uppercase tracking-[0.3em] text-[var(--ink-muted)] hover:text-[var(--ink)]"
             >
               <span className="h-px w-4 bg-[var(--line-deep)] transition-all group-hover:w-8" />
@@ -261,7 +260,6 @@ export default async function StoryPage({ params }: StoryPageProps) {
           </section>
         </article>
       </main>
-      <SiteFooter />
     </>
   );
 }

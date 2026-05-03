@@ -49,6 +49,11 @@ export const metadata: Metadata = {
   category: "wedding photography",
 };
 
+import { SiteFooter } from "@/components/site-footer";
+import { InstagramTeaser } from "@/components/instagram-teaser";
+import { Testimonials } from "@/components/testimonials";
+import { GoogleAnalytics } from "@/components/google-analytics";
+
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -56,7 +61,13 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className="h-full antialiased">
-      <body className="min-h-full">{children}</body>
+      <body className="min-h-full flex flex-col">
+        <GoogleAnalytics />
+        <div className="flex-grow">{children}</div>
+        <Testimonials />
+        <InstagramTeaser />
+        <SiteFooter />
+      </body>
     </html>
   );
 }

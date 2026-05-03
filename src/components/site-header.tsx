@@ -1,9 +1,12 @@
+// Updated contact navigation logic
 "use client";
 
 import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useState } from "react";
-import { navLinks, siteConfig } from "@/data/site";
+import { usePathname } from "next/navigation";
+import { siteConfig, navLinks } from "@/data/site";
+import { trackEvent } from "@/lib/gtag";
 
 type SiteHeaderProps = {
   overlay?: boolean;
@@ -11,6 +14,7 @@ type SiteHeaderProps = {
 
 export function SiteHeader({ overlay = true }: SiteHeaderProps) {
   const [open, setOpen] = useState(false);
+  const pathname = usePathname();
 
   useEffect(() => {
     document.body.style.overflow = open ? "hidden" : "";
@@ -21,8 +25,8 @@ export function SiteHeader({ overlay = true }: SiteHeaderProps) {
   }, [open]);
 
   const linkClass = overlay
-    ? "text-white/80 hover:text-white"
-    : "text-[var(--ink-soft)] hover:text-[var(--ink)]";
+    ? "text-white font-semibold hover:text-white/80 transition-colors"
+    : "text-[var(--ink-soft)] font-medium hover:text-[var(--ink)] transition-colors";
 
   const headerClass = overlay
     ? "absolute inset-x-0 top-0 z-30"
@@ -37,15 +41,26 @@ export function SiteHeader({ overlay = true }: SiteHeaderProps) {
           <div className="hidden w-full lg:grid lg:grid-cols-[1fr_auto_1fr] lg:items-center lg:gap-12">
             {/* Left Navigation */}
             <nav className="flex items-center justify-end gap-10">
-              {navLinks.slice(0, 3).map((link) => (
-                <Link
-                  key={link.label}
-                  href={link.href}
-                  className={`eyebrow text-[11px] uppercase tracking-[0.22em] ${linkClass}`}
-                >
-                  {link.label}
-                </Link>
-              ))}
+              {navLinks.slice(0, 3).map((link) => {
+                const isActive = pathname === link.href || (link.href !== "/" && link.href !== "/#about" && pathname.startsWith(link.href));
+                return (
+                  <Link
+                    key={link.label}
+                    href={link.href}
+                    onClick={() => trackEvent("nav_click", "navigation", link.label.toLowerCase())}
+                    className={`relative eyebrow text-[11px] uppercase tracking-[0.22em] transition-all duration-300 ${
+                      isActive 
+                        ? (overlay ? "text-white opacity-100 font-extrabold" : "text-[var(--accent-deep)] opacity-100 font-extrabold")
+                        : (overlay ? "text-white/70 font-semibold hover:text-white" : "text-[var(--ink-soft)] font-medium hover:text-[var(--ink)]")
+                    }`}
+                  >
+                    {link.label}
+                    {isActive && (
+                      <span className={`absolute -bottom-2 left-0 h-[2px] w-full animate-in fade-in slide-in-from-left-2 duration-500 ${overlay ? "bg-white" : "bg-[var(--accent-deep)]"}`} />
+                    )}
+                  </Link>
+                );
+              })}
             </nav>
 
             {/* Center Logo */}
@@ -68,45 +83,43 @@ export function SiteHeader({ overlay = true }: SiteHeaderProps) {
 
             {/* Right Navigation */}
             <nav className="flex items-center gap-10">
-              {navLinks.slice(3).map((link) =>
-                link.href.startsWith("mailto:") ? (
-                  <a
-                    key={link.label}
-                    href={link.href}
-                    className={`eyebrow text-[11px] uppercase tracking-[0.22em] ${linkClass}`}
-                  >
-                    {link.label}
-                  </a>
-                ) : (
+              {navLinks.slice(3).map((link) => {
+                const isActive = pathname === link.href || (link.href !== "/" && link.href !== "/#about" && pathname.startsWith(link.href));
+                const isExternal = link.href.startsWith("http") || link.href.startsWith("mailto:");
+                
+                if (isExternal) {
+                  return (
+                    <a
+                      key={link.label}
+                      href={link.href}
+                      target={link.href.startsWith("http") ? "_blank" : undefined}
+                      rel={link.href.startsWith("http") ? "noopener noreferrer" : undefined}
+                      onClick={() => trackEvent("nav_click", "navigation", link.label.toLowerCase())}
+                      className={`eyebrow text-[11px] uppercase tracking-[0.22em] ${linkClass} opacity-90`}
+                    >
+                      {link.label}
+                    </a>
+                  );
+                }
+
+                return (
                   <Link
                     key={link.label}
                     href={link.href}
-                    className={`eyebrow text-[11px] uppercase tracking-[0.22em] ${linkClass}`}
+                    onClick={() => trackEvent("nav_click", "navigation", link.label.toLowerCase())}
+                    className={`relative eyebrow text-[11px] uppercase tracking-[0.22em] transition-all duration-300 ${
+                      isActive 
+                        ? (overlay ? "text-white opacity-100 font-extrabold" : "text-[var(--accent-deep)] opacity-100 font-extrabold")
+                        : (overlay ? "text-white/70 font-semibold hover:text-white" : "text-[var(--ink-soft)] font-medium hover:text-[var(--ink)]")
+                    }`}
                   >
                     {link.label}
+                    {isActive && (
+                      <span className={`absolute -bottom-2 left-0 h-[2px] w-full animate-in fade-in slide-in-from-left-2 duration-500 ${overlay ? "bg-white" : "bg-[var(--accent-deep)]"}`} />
+                    )}
                   </Link>
-                ),
-              )}
-              {/* Search Icon */}
-              <button
-                type="button"
-                className={`${linkClass}`}
-                aria-label="Search"
-              >
-                <svg
-                  width="16"
-                  height="16"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="currentColor"
-                  strokeWidth="1.5"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                >
-                  <circle cx="11" cy="11" r="8" />
-                  <path d="m21 21-4.3-4.3" />
-                </svg>
-              </button>
+                );
+              })}
             </nav>
           </div>
 
@@ -125,7 +138,10 @@ export function SiteHeader({ overlay = true }: SiteHeaderProps) {
             </Link>
             <button
               type="button"
-              onClick={() => setOpen(true)}
+              onClick={() => {
+                setOpen(!open);
+                trackEvent("nav_click", "navigation", "mobile_menu_toggle");
+              }}
               className={`inline-flex items-center gap-3 rounded-full border px-4 py-2 text-[10px] uppercase tracking-[0.24em] ${
                 overlay
                   ? "border-white/20 bg-white/8 text-white"
@@ -165,27 +181,43 @@ export function SiteHeader({ overlay = true }: SiteHeaderProps) {
               </button>
             </div>
             <nav className="mt-16 flex flex-col gap-6">
-              {navLinks.map((link) =>
-                link.href.startsWith("mailto:") ? (
-                  <a
-                    key={link.label}
-                    href={link.href}
-                    onClick={() => setOpen(false)}
-                    className="font-editorial text-4xl leading-tight text-white/92"
-                  >
-                    {link.label}
-                  </a>
-                ) : (
+              {navLinks.map((link) => {
+                const isActive = pathname === link.href || (link.href !== "/" && link.href !== "/#about" && pathname.startsWith(link.href));
+                const isExternal = link.href.startsWith("http") || link.href.startsWith("mailto:");
+
+                if (isExternal) {
+                  return (
+                    <a
+                      key={link.label}
+                      href={link.href}
+                      target={link.href.startsWith("http") ? "_blank" : undefined}
+                      rel={link.href.startsWith("http") ? "noopener noreferrer" : undefined}
+                      onClick={() => setOpen(false)}
+                      className="font-editorial text-4xl leading-tight text-white/60"
+                    >
+                      {link.label}
+                    </a>
+                  );
+                }
+
+                return (
                   <Link
                     key={link.label}
                     href={link.href}
-                    onClick={() => setOpen(false)}
-                    className="font-editorial text-4xl leading-tight text-white/92"
+                    onClick={() => {
+                      setOpen(false);
+                      trackEvent("nav_click", "navigation", `mobile_${link.label.toLowerCase()}`);
+                    }}
+                    className={`font-editorial text-4xl leading-tight transition-all ${
+                      isActive 
+                        ? "text-[var(--accent)] underline decoration-[var(--accent)] underline-offset-8" 
+                        : "text-white/60 hover:text-white"
+                    }`}
                   >
                     {link.label}
                   </Link>
-                ),
-              )}
+                );
+              })}
             </nav>
           </div>
         </div>

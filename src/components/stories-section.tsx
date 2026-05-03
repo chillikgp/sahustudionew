@@ -23,7 +23,7 @@ export function StoriesSection() {
 
         {/* Asymmetrical Editorial Grid */}
         <div className="mt-20 grid gap-20 lg:grid-cols-12 lg:gap-12">
-          {stories.map((story, index) => {
+          {stories.slice(0, 3).map((story, index) => {
             const isFeatured = index === 0;
             
             return (
@@ -72,7 +72,7 @@ export function StoriesSection() {
 
                   <div className="pt-2">
                     <Link
-                      href={`/stories/${story.slug}`}
+                      href={`/wedding-stories/${story.slug}`}
                       className="shimmer-button inline-flex items-center bg-[var(--ink)] px-8 py-4 text-[10px] uppercase tracking-[0.3em] text-[var(--paper)] transition-all hover:bg-[var(--accent-deep)]"
                     >
                       Read the story

@@ -8,6 +8,8 @@ export type Story = {
   narrative: string;
   seoDescription: string;
   tags: string[];
+  category: "Wedding" | "Pre Wedding" | "Destination";
+  featured?: boolean;
   functionsCovered: string[];
   coverImage: {
     src: string;
@@ -47,6 +49,8 @@ export const stories: Story[] = [
   seoDescription:
     "A destination wedding at ITC Grand Bharat near Delhi NCR, captured by Sahu Studio with cinematic wedding films, candid photography, royal portraits, and heartfelt family moments.",
   tags: ["Delhi NCR", "Destination Wedding", "Luxury Wedding"],
+  category: "Wedding",
+  featured: true,
   functionsCovered: ["Haldi", "Mehendi", "Sagan", "Wedding"],
   coverImage: {
     src: "/images/stories/story-01-cover.jpg",
@@ -139,6 +143,8 @@ export const stories: Story[] = [
   seoDescription:
     "A romantic wedding story in Mathura, captured by Sahu Studio with cinematic wedding films, candid photography, emotional family moments, and timeless rituals.",
   tags: ["Mathura Wedding", "Traditional Wedding", "Emotional Wedding"],
+  category: "Wedding",
+  featured: false,
   functionsCovered: ["Home Rituals", "Haldi", "Mehendi", "Wedding"],
   coverImage: {
     src: "/images/stories/story-02-cover.jpg",
@@ -231,6 +237,8 @@ export const stories: Story[] = [
   seoDescription:
     "A romantic pre-wedding shoot in Chandni Chowk and Sunder Nursery, Delhi, captured by Sahu Studio with cinematic storytelling, candid moments, monsoon romance, and old Delhi charm.",
   tags: ["Pre Wedding", "Delhi 6", "Rain Shoot"],
+  category: "Pre Wedding",
+  featured: false,
   functionsCovered: ["Pre-Wedding Shoot"],
   coverImage: {
     src: "/images/stories/story-03-cover.jpg",

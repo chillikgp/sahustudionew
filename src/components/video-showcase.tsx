@@ -1,8 +1,10 @@
 "use client";
 
 import Image from "next/image";
+import Link from "next/link";
 import { useEffect, useRef, useState } from "react";
 import { featuredFilm, filmCollection } from "@/data/site";
+import { trackEvent } from "@/lib/gtag";
 
 function YouTubePlayer({ 
   youtubeId, 
@@ -34,7 +36,10 @@ function YouTubePlayer({
   return (
     <button
       type="button"
-      onClick={onPlay}
+      onClick={() => {
+        onPlay();
+        trackEvent("video_play", "engagement", youtubeId);
+      }}
       className="group relative aspect-video w-full overflow-hidden transition-all duration-500 hover:scale-[1.01]"
     >
       <Image
@@ -120,7 +125,10 @@ export function VideoShowcase() {
               </p>
               <div className="mt-12">
                  <button 
-                  onClick={() => window.open(`https://www.youtube.com/watch?v=${featuredFilm.youtubeId}`, '_blank')}
+                  onClick={() => {
+                    window.open(`https://www.youtube.com/watch?v=${featuredFilm.youtubeId}`, '_blank');
+                    trackEvent("video_play", "engagement", featuredFilm.title);
+                  }}
                   className="shimmer-button inline-flex items-center bg-white px-10 py-4 text-[10px] uppercase tracking-[0.3em] text-black transition-all hover:bg-white/90"
                  >
                    Watch Full Film
@@ -182,6 +190,18 @@ export function VideoShowcase() {
                 </article>
               );
             })}
+          </div>
+
+          <div className="mt-24 text-center reveal-up">
+            <Link 
+              href="/wedding-films"
+              className="inline-flex items-center gap-4 text-[10px] uppercase tracking-[0.4em] text-white/60 transition-all hover:text-white hover:gap-6"
+            >
+              <span>View All Films</span>
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
+                <path d="M5 12h14M12 5l7 7-7 7" />
+              </svg>
+            </Link>
           </div>
         </div>
       </section>
