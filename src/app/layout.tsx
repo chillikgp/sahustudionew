@@ -24,6 +24,15 @@ export const metadata: Metadata = {
   alternates: {
     canonical: "https://sahustudio.in",
   },
+  icons: {
+    icon: [
+      { url: "/favicon.ico" },
+      { url: "/icon.png", type: "image/png" },
+    ],
+    apple: [
+      { url: "/apple-icon.png" },
+    ],
+  },
   openGraph: {
     type: "website",
     locale: "en_IN",
