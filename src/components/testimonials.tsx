@@ -1,39 +1,12 @@
 import { testimonials } from "@/data/testimonials";
 import { siteConfig } from "@/data/site";
+import { JsonLd } from "@/components/json-ld";
+import { reviewListSchema } from "@/lib/schema";
 
 export function Testimonials() {
-  const structuredData = {
-    "@context": "https://schema.org",
-    "@type": "ItemList",
-    "itemListElement": testimonials.map((review, index) => ({
-      "@type": "ListItem",
-      "position": index + 1,
-      "item": {
-        "@type": "Review",
-        "author": {
-          "@type": "Person",
-          "name": review.author
-        },
-        "reviewBody": review.text,
-        "reviewRating": {
-          "@type": "Rating",
-          "ratingValue": review.rating,
-          "bestRating": "5"
-        },
-        "publisher": {
-          "@type": "Organization",
-          "name": "Google"
-        }
-      }
-    }))
-  };
-
   return (
     <section className="bg-[var(--paper)] py-24 lg:py-32 overflow-hidden">
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }}
-      />
+      <JsonLd data={reviewListSchema(testimonials)} />
       
       <div className="site-container">
         {/* Header Section */}

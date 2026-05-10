@@ -1,5 +1,6 @@
 import { filmCollection, siteConfig } from "@/data/site";
 import type { Story } from "@/data/stories";
+import type { testimonials } from "@/data/testimonials";
 import { absoluteUrl, canonicalUrl } from "@/lib/seo";
 
 export type BreadcrumbItem = {
@@ -230,6 +231,51 @@ export function filmListSchema() {
         embedUrl: `https://www.youtube-nocookie.com/embed/${film.youtubeId.split("?")[0]}`,
         contentUrl: `https://www.youtube.com/watch?v=${film.youtubeId}`,
         duration: film.duration,
+      },
+    })),
+  };
+}
+
+export function reviewListSchema(reviews: typeof testimonials) {
+  return {
+    "@context": "https://schema.org",
+    "@type": "ItemList",
+    itemListElement: reviews.map((review, index) => ({
+      "@type": "ListItem",
+      position: index + 1,
+      item: {
+        "@type": "Review",
+        author: {
+          "@type": "Person",
+          name: review.author,
+        },
+        reviewBody: review.text,
+        reviewRating: {
+          "@type": "Rating",
+          ratingValue: review.rating,
+          bestRating: "5",
+          worstRating: "1",
+        },
+        itemReviewed: {
+          "@type": ["LocalBusiness", "ProfessionalService"],
+          "@id": `${siteConfig.url}/#business`,
+          name: siteConfig.name,
+          image: absoluteUrl("/images/hero/hero-poster.jpg"),
+          url: siteConfig.url,
+          telephone: siteConfig.phone,
+          address: {
+            "@type": "PostalAddress",
+            streetAddress: "Karkardooma",
+            addressLocality: "Delhi",
+            addressRegion: "Delhi NCR",
+            postalCode: "110092",
+            addressCountry: "IN",
+          },
+        },
+        publisher: {
+          "@type": "Organization",
+          name: "Google",
+        },
       },
     })),
   };
