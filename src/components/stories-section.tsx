@@ -1,7 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
 import { stories } from "@/data/stories";
-import { SectionIntro } from "./section-intro";
 
 export function StoriesSection() {
   return (
@@ -44,7 +43,6 @@ export function StoriesSection() {
                     fill
                     sizes={isFeatured ? "(max-width: 1024px) 100vw, 60vw" : "(max-width: 1024px) 100vw, 35vw"}
                     className="object-cover transition duration-1000 group-hover:scale-105"
-                    unoptimized
                   />
                   <div className="absolute inset-0 bg-black/0 transition-colors duration-500 group-hover:bg-black/5" />
                 </div>

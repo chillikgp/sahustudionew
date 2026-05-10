@@ -42,9 +42,9 @@ export function InstagramTeaser() {
               src={photo.src}
               alt={`Wedding moment ${i + 1}`}
               fill
+              sizes="(max-width: 768px) 200px, 12.5vw"
               className="object-cover transition-transform duration-700 group-hover:scale-110"
               loading="lazy"
-              unoptimized
             />
             <div className="absolute inset-0 bg-black/20 opacity-0 transition-opacity group-hover:opacity-100 flex items-center justify-center">
               <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" className="text-white">

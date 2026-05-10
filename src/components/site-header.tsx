@@ -74,9 +74,9 @@ export function SiteHeader({ overlay = true }: SiteHeaderProps) {
                   src="/images/brand-logo.png"
                   alt={siteConfig.name}
                   fill
+                  sizes="48px"
                   className={`object-contain transition-all duration-500 ${logoClass}`}
                   priority
-                  unoptimized
                 />
               </div>
             </Link>
@@ -131,8 +131,8 @@ export function SiteHeader({ overlay = true }: SiteHeaderProps) {
                   src="/images/brand-logo.png"
                   alt={siteConfig.name}
                   fill
+                  sizes="40px"
                   className={`object-contain transition-all duration-500 ${logoClass}`}
-                  unoptimized
                 />
               </div>
             </Link>
@@ -164,8 +164,8 @@ export function SiteHeader({ overlay = true }: SiteHeaderProps) {
                     src="/images/brand-logo.png"
                     alt={siteConfig.name}
                     fill
+                    sizes="48px"
                     className="object-contain"
-                    unoptimized
                   />
                 </div>
                 <p className="eyebrow mt-1 text-[10px] tracking-[0.3em] text-white/60">

@@ -101,16 +101,15 @@ export function SiteFooter() {
           <p className="text-[9px] uppercase tracking-[0.2em] text-white/20">
             {siteConfig.copyright}. All rights reserved.
           </p>
-          <div className="flex gap-6">
-             <Link href="/privacy-policy" className="text-[9px] uppercase tracking-[0.2em] text-white/20 hover:text-white transition-colors">Privacy</Link>
-             <Link href="/terms" className="text-[9px] uppercase tracking-[0.2em] text-white/20 hover:text-white transition-colors">Terms</Link>
-          </div>
+          <a
+            href={siteConfig.socials.maps}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-[9px] uppercase tracking-[0.2em] text-white/20 hover:text-white transition-colors"
+          >
+            Karkardooma, Delhi NCR
+          </a>
         </div>
-      </div>
-
-      {/* Hidden SEO Block */}
-      <div className="sr-only">
-        Sahu Studio is a Delhi NCR based wedding photography and cinematography brand specialising in candid wedding photography, cinematic films, pre wedding shoots, and destination weddings across India.
       </div>
     </footer>
   );

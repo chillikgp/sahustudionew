@@ -55,7 +55,7 @@ img {
 
 .font-editorial {
   font-family: var(--font-serif-stack);
-  letter-spacing: -0.04em;
+  letter-spacing: 0;
 }
 
 .site-container {

@@ -1,38 +1,30 @@
+import type { Metadata } from "next";
 import { AboutSection } from "@/components/about-section";
 import { HeroSection } from "@/components/hero-section";
+import { JsonLd } from "@/components/json-ld";
 import { PhotoShowcase } from "@/components/photo-showcase";
 import { StoriesSection } from "@/components/stories-section";
 import { VideoShowcase } from "@/components/video-showcase";
-import { siteConfig } from "@/data/site";
+import { buildMetadata } from "@/lib/seo";
+import { breadcrumbSchema } from "@/lib/schema";
 
-const homeStructuredData = {
-  "@context": "https://schema.org",
-  "@type": "LocalBusiness",
-  name: siteConfig.name,
-  description: siteConfig.description,
-  foundingDate: "1982",
-  image: `${siteConfig.url}/images/hero/hero-poster.jpg`,
-  url: siteConfig.url,
-  email: siteConfig.email,
-  slogan: siteConfig.tagline,
-  areaServed: siteConfig.serviceAreas,
-  knowsAbout: [
-    "Wedding Photography",
-    "Wedding Cinematography",
-    "Editorial Portraiture",
-    "Wedding Storytelling",
+export const metadata: Metadata = buildMetadata({
+  title: "Sahu Studio | Luxury Wedding Photography & Cinematography in Delhi NCR",
+  description:
+    "Luxury wedding photography and cinematic films in Delhi NCR, crafted by Sahu Studio with editorial portraits, candid emotion, and a family studio legacy since 1982.",
+  path: "",
+  keywords: [
+    "Sahu Studio wedding photography",
+    "luxury wedding photographer Delhi NCR",
+    "wedding cinematography Delhi",
+    "editorial Indian wedding photographer",
   ],
-};
+});
 
 export default function Home() {
   return (
     <>
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{
-          __html: JSON.stringify(homeStructuredData),
-        }}
-      />
+      <JsonLd data={breadcrumbSchema([{ name: "Home", path: "" }])} />
       <h1 className="sr-only">
         Sahu Studio luxury wedding photography and cinematography in Delhi NCR
       </h1>

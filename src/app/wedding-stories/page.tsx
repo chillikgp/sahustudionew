@@ -1,19 +1,40 @@
 import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
+import { Breadcrumbs } from "@/components/breadcrumbs";
+import { JsonLd } from "@/components/json-ld";
 import { SiteHeader } from "@/components/site-header";
 import { stories } from "@/data/stories";
-import { siteConfig } from "@/data/site";
 import { PhilosophySection } from "@/components/philosophy-section";
 import { ExploreMore } from "@/components/explore-more";
+import { buildMetadata } from "@/lib/seo";
+import { breadcrumbSchema, storyListSchema } from "@/lib/schema";
 
-export const metadata: Metadata = {
-  title: "Wedding Stories in Delhi NCR | Sahu Studio",
-  description: "Explore real wedding stories, destination celebrations, and pre-wedding shoots captured by Sahu Studio.",
-  alternates: {
-    canonical: `${siteConfig.url}/wedding-stories`,
+const pagePath = "/wedding-stories";
+
+const breadcrumbs = [
+  { name: "Home", path: "" },
+  { name: "Wedding Stories", path: pagePath },
+] as const;
+
+export const metadata: Metadata = buildMetadata({
+  title: "Wedding Stories in Delhi NCR",
+  description:
+    "Explore real wedding stories, destination celebrations, and pre-wedding shoots photographed and filmed by Sahu Studio across Delhi NCR and beyond.",
+  path: pagePath,
+  keywords: [
+    "real wedding stories Delhi NCR",
+    "Indian wedding photography stories",
+    "luxury wedding portfolio Delhi",
+    "pre wedding shoot stories",
+  ],
+  image: {
+    src: "/images/stories/story-01-cover.jpg",
+    alt: "Luxury wedding story photographed by Sahu Studio",
+    width: 1600,
+    height: 1200,
   },
-};
+});
 
 export default function StoriesPage() {
   // Sort stories: featured first, then by implicit order (most recent at top of array)
@@ -23,27 +44,15 @@ export default function StoriesPage() {
     return 0;
   });
 
-  const structuredData = {
-    "@context": "https://schema.org",
-    "@type": "ItemList",
-    "itemListElement": sortedStories.map((story, index) => ({
-      "@type": "ListItem",
-      "position": index + 1,
-      "url": `${siteConfig.url}/wedding-stories/${story.slug}`
-    }))
-  };
-
   return (
     <div className="min-h-screen bg-[var(--paper)]">
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }}
-      />
+      <JsonLd data={[breadcrumbSchema([...breadcrumbs]), storyListSchema(sortedStories)]} />
       <SiteHeader overlay={false} />
 
       <main className="pt-32 pb-20">
+        <Breadcrumbs items={[...breadcrumbs]} />
         {/* Header Section */}
-        <header className="site-container mb-16">
+        <header className="site-container mt-12 mb-16">
           <span className="eyebrow text-[11px] tracking-[0.3em] text-[var(--accent)] block mb-4 delayed-reveal">
             Journal
           </span>
@@ -80,7 +89,6 @@ export default function StoriesPage() {
                     fill
                     sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                     className="object-cover transition-transform duration-1000 group-hover:scale-105"
-                    unoptimized
                   />
                   {story.featured && (
                     <div className="absolute top-4 left-4 bg-white/90 backdrop-blur-sm px-3 py-1 text-[8px] uppercase tracking-widest text-[var(--ink)]">
@@ -129,6 +137,25 @@ export default function StoriesPage() {
           </div>
         </section>
         {/* Philosophy & Explore */}
+        <section className="site-container mt-28 grid gap-12 border-t border-[var(--line)] pt-20 lg:grid-cols-[0.85fr_1.15fr]">
+          <div>
+            <p className="eyebrow text-[10px] uppercase tracking-[0.35em] text-[var(--accent-deep)]">
+              Portfolio Notes
+            </p>
+            <h2 className="font-editorial mt-4 text-4xl leading-tight text-[var(--ink)] md:text-5xl">
+              Real weddings, written with place and feeling intact
+            </h2>
+          </div>
+          <div className="space-y-6 text-base leading-relaxed text-[var(--ink-soft)] md:text-lg">
+            <p>
+              Each story in this archive is more than a gallery. We document the venue, city, ceremonies, styling, family energy, and the quiet emotional moments that shaped the wedding. That context helps couples understand our approach and gives search engines a clear, crawlable reading of what each visual essay contains.
+            </p>
+            <p>
+              The archive is intentionally shallow and direct: every story is reachable from this page, from the homepage, and from related story links inside individual essays. Whether the celebration is a palace wedding near Delhi NCR, a soulful Mathura wedding, or a rain-kissed Delhi pre-wedding shoot, the route remains easy for Google to discover and for couples to explore.
+            </p>
+          </div>
+        </section>
+
         <PhilosophySection 
           eyebrow="The Story Behind Every Frame"
           title="Every wedding has a rhythm. We tell it with honesty."

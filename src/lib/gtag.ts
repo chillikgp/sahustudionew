@@ -31,7 +31,7 @@ declare global {
       targetId: string,
       config?: ControlObject | EventParams | CustomParams
     ) => void;
-    dataLayer: any[];
+    dataLayer: unknown[];
   }
 }
 
@@ -52,7 +52,7 @@ interface EventParams {
   description?: string;
   event_category?: string;
   event_label?: string;
-  items?: any[];
+  items?: Record<string, unknown>[];
   item_list_id?: string;
   item_list_name?: string;
   list_name?: string;
@@ -70,9 +70,9 @@ interface EventParams {
   tax?: number;
   transaction_id?: string;
   value?: number;
-  [key: string]: any;
+  [key: string]: unknown;
 }
 
 interface CustomParams {
-  [key: string]: any;
+  [key: string]: unknown;
 }

@@ -40,7 +40,6 @@ export function GalleryGrid() {
                 sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                 className="h-auto w-full object-cover transition-transform duration-500 group-hover:scale-[1.02]"
                 loading="lazy"
-                unoptimized
               />
             </button>
           </div>

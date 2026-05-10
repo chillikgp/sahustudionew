@@ -2,10 +2,17 @@ import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
+import { Breadcrumbs } from "@/components/breadcrumbs";
+import { JsonLd } from "@/components/json-ld";
 import { SiteHeader } from "@/components/site-header";
 import { StoryGallery } from "@/components/story-gallery";
-import { siteConfig } from "@/data/site";
-import { storySlugs, storiesBySlug } from "@/data/stories";
+import { stories, storySlugs, storiesBySlug, type Story } from "@/data/stories";
+import { buildMetadata } from "@/lib/seo";
+import {
+  breadcrumbSchema,
+  imageGallerySchema,
+  storyArticleSchema,
+} from "@/lib/schema";
 
 type StoryPageProps = {
   params: Promise<{
@@ -27,35 +34,53 @@ export async function generateMetadata({
     return {};
   }
 
-  const title = `${story.coupleNames} at ${story.venue}`;
-
-  return {
-    title,
+  return buildMetadata({
+    title: `${story.coupleNames} at ${story.venue}`,
     description: story.seoDescription,
-    alternates: {
-      canonical: `${siteConfig.url}/wedding-stories/${story.slug}`,
+    path: `/wedding-stories/${story.slug}`,
+    type: "article",
+    keywords: [
+      ...story.tags,
+      `${story.city} wedding photography`,
+      `${story.venue} wedding`,
+      story.category,
+      ...story.functionsCovered,
+    ],
+    image: {
+      src: story.coverImage.src,
+      width: 1600,
+      height: 1200,
+      alt: story.coverImage.alt,
     },
-    openGraph: {
-      type: "article",
-      title,
-      description: story.seoDescription,
-      url: `${siteConfig.url}/wedding-stories/${story.slug}`,
-      images: [
-        {
-          url: story.coverImage.src,
-          width: 1600,
-          height: 1200,
-          alt: story.coverImage.alt,
-        },
-      ],
-    },
-    twitter: {
-      card: "summary_large_image",
-      title,
-      description: story.seoDescription,
-      images: [story.coverImage.src],
-    },
-  };
+  });
+}
+
+function getRelatedStories(story: Story) {
+  return stories
+    .filter((candidate) => candidate.slug !== story.slug)
+    .sort((a, b) => {
+      const aScore =
+        Number(a.category === story.category) +
+        Number(a.city === story.city) +
+        a.tags.filter((tag) => story.tags.includes(tag)).length;
+      const bScore =
+        Number(b.category === story.category) +
+        Number(b.city === story.city) +
+        b.tags.filter((tag) => story.tags.includes(tag)).length;
+
+      return bScore - aScore;
+    })
+    .slice(0, 2);
+}
+
+function buildEditorialParagraphs(story: Story) {
+  const ceremonies = story.functionsCovered.join(", ");
+
+  return [
+    `${story.coupleNames}'s ${story.category.toLowerCase()} story was shaped by the atmosphere of ${story.venue} in ${story.city}, where the celebration moved through ${ceremonies}. Our approach was to let the location breathe in the photographs: the architecture, the changing light, the textures of the decor, and the small gestures that often become the most treasured memories.`,
+    `For this visual essay, the photography direction stayed cinematic but restrained. We looked for frames that balanced scale with intimacy: a quiet portrait before the next ceremony, families gathering between rituals, hands adjusting jewellery, laughter during the lighter moments, and the couple returning to each other in the middle of a busy day. That rhythm gives the gallery its emotional shape.`,
+    `The cultural details mattered as much as the grand scenes. Indian weddings are layered with sound, colour, blessings, movement, and family history, and each ceremony asks for a different pace. The ${story.category.toLowerCase()} coverage was planned to preserve those details without interrupting the natural flow of the celebration, so the final story feels polished, personal, and true to the people who lived it.`,
+  ];
 }
 
 export default async function StoryPage({ params }: StoryPageProps) {
@@ -66,40 +91,29 @@ export default async function StoryPage({ params }: StoryPageProps) {
     notFound();
   }
 
-  const articleStructuredData = {
-    "@context": "https://schema.org",
-    "@type": "Article",
-    headline: `${story.coupleNames} at ${story.venue}`,
-    description: story.seoDescription,
-    image: [`${siteConfig.url}${story.coverImage.src}`],
-    author: {
-      "@type": "Organization",
-      name: siteConfig.name,
-    },
-    publisher: {
-      "@type": "Organization",
-      name: siteConfig.name,
-      logo: {
-        "@type": "ImageObject",
-        url: `${siteConfig.url}/images/hero/hero-poster.jpg`,
-      },
-    },
-    mainEntityOfPage: `${siteConfig.url}/wedding-stories/${story.slug}`,
-    articleSection: "Wedding Stories",
-  };
+  const pagePath = `/wedding-stories/${story.slug}` as const;
+  const breadcrumbs = [
+    { name: "Home", path: "" },
+    { name: "Wedding Stories", path: "/wedding-stories" },
+    { name: story.coupleNames, path: pagePath },
+  ] as const;
+  const relatedStories = getRelatedStories(story);
+  const editorialParagraphs = buildEditorialParagraphs(story);
 
   return (
     <>
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{
-          __html: JSON.stringify(articleStructuredData),
-        }}
+      <JsonLd
+        data={[
+          breadcrumbSchema([...breadcrumbs]),
+          storyArticleSchema(story),
+          imageGallerySchema(story),
+        ]}
       />
       <SiteHeader overlay={false} />
       <main className="bg-[var(--canvas)] pt-32 text-[var(--ink)]">
+        <Breadcrumbs items={[...breadcrumbs]} />
         {/* Editorial Top Header */}
-        <header className="pb-20 lg:pb-32">
+        <header className="pt-12 pb-20 lg:pb-32">
           <div className="site-container">
             <Link
               href="/wedding-stories"
@@ -167,7 +181,6 @@ export default async function StoryPage({ params }: StoryPageProps) {
                   sizes="(max-width: 1024px) 100vw, 55vw"
                   className="object-cover"
                   priority
-                  unoptimized
                 />
               </div>
 
@@ -211,6 +224,22 @@ export default async function StoryPage({ params }: StoryPageProps) {
                 </div>
               </div>
             ))}
+          </section>
+
+          <section className="site-container mt-28 grid gap-12 border-y border-[var(--line)] py-20 lg:grid-cols-[0.75fr_1.25fr]">
+            <div>
+              <p className="eyebrow text-[10px] uppercase tracking-[0.35em] text-[var(--accent-deep)]">
+                Editorial Note
+              </p>
+              <h2 className="font-editorial mt-4 text-4xl leading-tight text-[var(--ink)] md:text-5xl">
+                The venue, ceremonies, and feeling behind the frames
+              </h2>
+            </div>
+            <div className="space-y-6 text-base leading-relaxed text-[var(--ink-soft)] md:text-lg">
+              {editorialParagraphs.map((paragraph) => (
+                <p key={paragraph}>{paragraph}</p>
+              ))}
+            </div>
           </section>
 
           {/* Film Highlight Section */}
@@ -257,6 +286,47 @@ export default async function StoryPage({ params }: StoryPageProps) {
             </div>
             
             <StoryGallery images={story.gallery} />
+          </section>
+
+          <section className="site-container mt-32">
+            <div className="mb-12 max-w-3xl">
+              <p className="eyebrow text-[10px] uppercase tracking-[0.35em] text-[var(--accent-deep)]">
+                Related Stories
+              </p>
+              <h2 className="font-editorial mt-4 text-5xl leading-tight text-[var(--ink)]">
+                Continue through the archive
+              </h2>
+            </div>
+            <div className="grid gap-8 md:grid-cols-2">
+              {relatedStories.map((related) => (
+                <Link
+                  key={related.slug}
+                  href={`/wedding-stories/${related.slug}`}
+                  className="group grid gap-6 md:grid-cols-[0.8fr_1fr] md:items-center"
+                >
+                  <div className="relative aspect-[4/5] overflow-hidden bg-[var(--paper)]">
+                    <Image
+                      src={related.coverImage.src}
+                      alt={related.coverImage.alt}
+                      fill
+                      sizes="(max-width: 768px) 100vw, 28vw"
+                      className="object-cover transition-transform duration-1000 group-hover:scale-105"
+                    />
+                  </div>
+                  <div>
+                    <p className="eyebrow text-[10px] uppercase tracking-[0.3em] text-[var(--ink-muted)]">
+                      {related.city} / {related.category}
+                    </p>
+                    <h3 className="font-editorial mt-3 text-4xl leading-tight text-[var(--ink)] group-hover:text-[var(--accent-deep)]">
+                      {related.coupleNames}
+                    </h3>
+                    <p className="mt-4 text-sm leading-relaxed text-[var(--ink-soft)]">
+                      {related.teaser}
+                    </p>
+                  </div>
+                </Link>
+              ))}
+            </div>
           </section>
         </article>
       </main>

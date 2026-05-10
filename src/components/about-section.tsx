@@ -3,7 +3,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useState, useRef } from "react";
-import { stats } from "@/data/site";
+import { siteConfig, stats } from "@/data/site";
 
 function StatCounter({ value, label }: { value: string; label: string }) {
   const [count, setCount] = useState(0);
@@ -97,7 +97,6 @@ export function AboutSection() {
                 sizes="(max-width: 1024px) 100vw, 40vw"
                 className="object-cover"
                 priority
-                unoptimized
               />
             </div>
           </div>
@@ -151,7 +150,7 @@ export function AboutSection() {
               {/* CTA Section */}
               <div className="mt-12">
                 <Link
-                  href="https://wa.me/919999999999" // Placeholder for WhatsApp
+                  href={siteConfig.socials.whatsapp}
                   target="_blank"
                   className="shimmer-button inline-flex items-center bg-[var(--ink)] px-10 py-4 text-[11px] uppercase tracking-[0.3em] text-[var(--paper)] transition-all hover:bg-[var(--accent-deep)]"
                 >

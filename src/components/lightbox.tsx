@@ -1,7 +1,7 @@
 "use client";
 
 import Image from "next/image";
-import { useEffect, useState, useRef } from "react";
+import { useEffect, useRef } from "react";
 import { createPortal } from "react-dom";
 
 type LightboxImage = {
@@ -25,8 +25,8 @@ export function Lightbox({
   onNext,
   onPrevious,
 }: LightboxProps) {
-  const [mounted, setMounted] = useState(false);
   const image = images[currentIndex];
+  const portalRoot = typeof document === "undefined" ? null : document.body;
   
   // Swipe support
   const touchStartX = useRef<number | null>(null);
@@ -56,7 +56,6 @@ export function Lightbox({
   };
 
   useEffect(() => {
-    setMounted(true);
     // Prevent scrolling when lightbox is open
     document.body.style.overflow = "hidden";
     
@@ -77,13 +76,12 @@ export function Lightbox({
     window.addEventListener("keydown", handleKeyDown);
 
     return () => {
-      setMounted(false);
       document.body.style.overflow = "";
       window.removeEventListener("keydown", handleKeyDown);
     };
   }, [onClose, onNext, onPrevious]);
 
-  if (!mounted) return null;
+  if (!portalRoot) return null;
 
   return createPortal(
     <div 
@@ -134,7 +132,6 @@ export function Lightbox({
               sizes="100vw"
               className="object-contain"
               priority
-              unoptimized
             />
           </div>
         </div>
@@ -168,7 +165,6 @@ export function Lightbox({
         <div className="h-full w-full pointer-events-auto" onClick={onNext} />
       </div>
     </div>,
-    document.body
+    portalRoot
   );
 }
-

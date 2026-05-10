@@ -1,12 +1,13 @@
 "use client";
 
 import Image from "next/image";
-import Link from "next/link";
 import { useMemo, useState } from "react";
-import { showcasePhotos, siteConfig } from "@/data/site";
+import { showcasePhotos } from "@/data/site";
 import { Lightbox } from "./lightbox";
 import { trackEvent } from "@/lib/gtag";
-import { SectionIntro } from "./section-intro";
+
+type ShowcasePhoto = (typeof showcasePhotos)[number];
+type GridItem = ShowcasePhoto | { isQuote: true };
 
 export function PhotoShowcase() {
   const [currentIndex, setCurrentIndex] = useState<number | null>(null);
@@ -15,9 +16,9 @@ export function PhotoShowcase() {
   
   // Define 15 tiles (14 photos + 1 quote card at index 7)
   const gridItems = useMemo(() => {
-    const items = [...photos];
-    const quoteCard = { isQuote: true };
-    items.splice(7, 0, quoteCard as any);
+    const items: GridItem[] = [...photos];
+    const quoteCard: GridItem = { isQuote: true };
+    items.splice(7, 0, quoteCard);
     return items;
   }, [photos]);
 
@@ -82,7 +83,6 @@ export function PhotoShowcase() {
                     placeholder="blur"
                     blurDataURL={item.blurDataURL}
                     loading="lazy"
-                    unoptimized
                   />
                 </button>
               </div>

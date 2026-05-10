@@ -92,7 +92,7 @@ export function Testimonials() {
               {/* Review Text */}
               <div className="relative pl-0 md:pl-4 border-l-0 md:border-l border-[var(--line-deep)]">
                 <p className="text-lg md:text-xl text-[var(--ink-soft)] leading-relaxed mb-8 italic">
-                  "{review.text}"
+                  &quot;{review.text}&quot;
                 </p>
                 
                 <div className="flex flex-col gap-1">
