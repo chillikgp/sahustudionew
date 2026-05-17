@@ -13,6 +13,7 @@ import {
   imageGallerySchema,
   storyArticleSchema,
 } from "@/lib/schema";
+import { Testimonials } from "@/components/testimonials";
 
 type StoryPageProps = {
   params: Promise<{
@@ -364,6 +365,7 @@ export default async function StoryPage({ params }: StoryPageProps) {
             </div>
           </section>
         </article>
+        <Testimonials />
       </main>
     </>
   );

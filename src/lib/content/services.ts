@@ -1,5 +1,6 @@
 import fs from "node:fs";
 import path from "node:path";
+import type { Testimonial } from "@/data/testimonials";
 
 const servicesDirectory = path.join(process.cwd(), "content/services");
 
@@ -33,10 +34,21 @@ export type ServicePageContent = {
     image: ServiceImage;
   };
   hero: {
+    layout?: "editorial" | "product";
     eyebrow: string;
     title: string;
     dek: string;
     image: ServiceImage;
+    thumbnails?: ServiceImage[];
+    product?: {
+      priceLabel?: string;
+      note?: string;
+      specs?: Array<{
+        label: string;
+        value: string;
+      }>;
+      options?: string[];
+    };
     primaryCta: Required<Pick<ServiceLink, "label" | "href">>;
     secondaryCta?: Required<Pick<ServiceLink, "label" | "href">>;
   };
@@ -84,6 +96,7 @@ export type ServicePageContent = {
   }>;
   relatedServices: ServiceLink[];
   relatedResources?: ServiceLink[];
+  testimonials?: Testimonial[];
   cta: {
     eyebrow: string;
     heading: string;

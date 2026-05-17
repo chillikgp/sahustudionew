@@ -1,6 +1,18 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
+  images: {
+    localPatterns: [
+      {
+        pathname: "/images/**",
+        search: "",
+      },
+      {
+        pathname: "/images/services/passport-photo-delhi/**",
+        search: "?v=20260517",
+      },
+    ],
+  },
   async headers() {
     return [
       {

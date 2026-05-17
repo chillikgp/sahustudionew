@@ -8,6 +8,7 @@ import { GallerySection } from "./gallery-section";
 import { HeroSection } from "./hero-section";
 import { ProcessSection } from "./process-section";
 import { RelatedServices } from "./related-services";
+import { Testimonials } from "@/components/testimonials";
 
 type ServicePageTemplateProps = {
   service: ServicePageContent;
@@ -53,6 +54,13 @@ export function ServicePageTemplate({ service }: ServicePageTemplateProps) {
 
         <ProcessSection service={service} />
         <FAQSection service={service} />
+        {service.testimonials && service.testimonials.length > 0 && (
+          <Testimonials 
+            reviews={service.testimonials}
+            heading="Real experiences from our clients"
+            subheading="Client Reviews"
+          />
+        )}
         <RelatedServices service={service} />
         <CTASection service={service} />
       </main>

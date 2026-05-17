@@ -8,6 +8,7 @@ import { JsonLd } from "@/components/json-ld";
 import { UtilityServicesLinks } from "@/components/utility-services-links";
 import { buildMetadata } from "@/lib/seo";
 import { breadcrumbSchema, serviceSchema, type FaqItem } from "@/lib/schema";
+import { Testimonials } from "@/components/testimonials";
 
 const pagePath = "/wedding-photography-delhi-ncr";
 
@@ -147,6 +148,7 @@ export default function PhotosPage() {
           </div>
         </section>
 
+        <Testimonials />
         <UtilityServicesLinks />
 
         <ExploreMore 

@@ -4,7 +4,6 @@ import { JsonLd } from "@/components/json-ld";
 import { InstagramTeaser } from "@/components/instagram-teaser";
 import { SiteFooter } from "@/components/site-footer";
 import { GoogleAnalytics } from "@/components/google-analytics";
-import { Testimonials } from "@/components/testimonials";
 import { organizationSchema, websiteSchema } from "@/lib/schema";
 
 export const metadata: Metadata = {
@@ -73,7 +72,6 @@ export default function RootLayout({
       <body className="min-h-full flex flex-col">
         <GoogleAnalytics />
         <div className="flex-grow">{children}</div>
-        <Testimonials />
         <InstagramTeaser />
         <SiteFooter />
       </body>

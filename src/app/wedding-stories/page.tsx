@@ -9,6 +9,7 @@ import { PhilosophySection } from "@/components/philosophy-section";
 import { ExploreMore } from "@/components/explore-more";
 import { buildMetadata } from "@/lib/seo";
 import { breadcrumbSchema, storyListSchema } from "@/lib/schema";
+import { Testimonials } from "@/components/testimonials";
 
 const pagePath = "/wedding-stories";
 
@@ -162,6 +163,7 @@ export default function StoriesPage() {
           body="Our wedding stories go beyond visuals. They capture the pace, emotions, and atmosphere of each celebration. From quiet moments to vibrant rituals, we document weddings as they unfold naturally, creating narratives that feel lived-in and timeless."
         />
 
+        <Testimonials />
         <ExploreMore 
           cards={[
             {

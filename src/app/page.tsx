@@ -8,6 +8,7 @@ import { StoriesSection } from "@/components/stories-section";
 import { VideoShowcase } from "@/components/video-showcase";
 import { buildMetadata } from "@/lib/seo";
 import { breadcrumbSchema } from "@/lib/schema";
+import { Testimonials } from "@/components/testimonials";
 
 export const metadata: Metadata = buildMetadata({
   title: "Sahu Studio | Luxury Wedding Photography & Cinematography in Delhi NCR",
@@ -34,8 +35,9 @@ export default function Home() {
         <AboutSection />
         <PhotoShowcase />
         <StoriesSection />
-        <FeaturedServicesSection />
         <VideoShowcase />
+        <Testimonials />
+        <FeaturedServicesSection />
       </main>
     </>
   );

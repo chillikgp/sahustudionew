@@ -1,23 +1,39 @@
-import { testimonials } from "@/data/testimonials";
+import { Testimonial, weddingTestimonials } from "@/data/testimonials";
 import { siteConfig } from "@/data/site";
 import { JsonLd } from "@/components/json-ld";
 import { reviewListSchema } from "@/lib/schema";
 
-export function Testimonials() {
+type TestimonialsProps = {
+  reviews?: Testimonial[];
+  heading?: string | React.ReactNode;
+  subheading?: string;
+};
+
+export function Testimonials({
+  reviews = weddingTestimonials,
+  heading = "Real experiences from couples we’ve worked with",
+  subheading = "Kind Words"
+}: TestimonialsProps) {
   return (
     <section className="bg-[var(--paper)] py-24 lg:py-32 overflow-hidden">
-      <JsonLd data={reviewListSchema(testimonials)} />
+      <JsonLd data={reviewListSchema(reviews)} />
       
       <div className="site-container">
         {/* Header Section */}
         <div className="flex flex-col md:flex-row justify-between items-end gap-8 mb-20 reveal-up">
           <div className="max-w-xl">
             <p className="eyebrow text-[10px] uppercase tracking-[0.4em] text-[var(--accent-deep)] mb-4">
-              Kind Words
+              {subheading}
             </p>
             <h2 className="font-editorial text-4xl md:text-6xl leading-[1.1] text-[var(--ink)]">
-              Real experiences from <br />
-              <span className="italic">couples we’ve worked with</span>
+              {heading === "Real experiences from couples we’ve worked with" ? (
+                <>
+                  Real experiences from <br />
+                  <span className="italic">couples we’ve worked with</span>
+                </>
+              ) : (
+                heading
+              )}
             </h2>
           </div>
           
@@ -36,7 +52,7 @@ export function Testimonials() {
 
         {/* Testimonials Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-x-16 gap-y-20 lg:gap-x-24">
-          {testimonials.map((review) => (
+          {reviews.map((review) => (
             <article 
               key={review.id} 
               className="relative flex flex-col items-start reveal-up"

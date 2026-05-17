@@ -7,6 +7,7 @@ import { SiteHeader } from "@/components/site-header";
 import { trackEvent } from "@/lib/gtag";
 import { PhilosophySection } from "@/components/philosophy-section";
 import { ExploreMore } from "@/components/explore-more";
+import { Testimonials } from "@/components/testimonials";
 import { Breadcrumbs } from "@/components/breadcrumbs";
 
 function YouTubePlayer({ 
@@ -219,6 +220,7 @@ export function FilmsPageContent() {
         dark={true}
       />
 
+      <Testimonials />
       <ExploreMore 
         cards={[
           {

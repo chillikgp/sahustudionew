@@ -1,7 +1,7 @@
 import { filmCollection, siteConfig } from "@/data/site";
 import type { ServicePageContent } from "@/lib/content/services";
 import type { Story } from "@/data/stories";
-import type { testimonials } from "@/data/testimonials";
+import type { Testimonial } from "@/data/testimonials";
 import { absoluteUrl, canonicalUrl } from "@/lib/seo";
 
 export type BreadcrumbItem = {
@@ -319,7 +319,7 @@ export function filmListSchema() {
   };
 }
 
-export function reviewListSchema(reviews: typeof testimonials) {
+export function reviewListSchema(reviews: Testimonial[]) {
   return {
     "@context": "https://schema.org",
     "@type": "ItemList",

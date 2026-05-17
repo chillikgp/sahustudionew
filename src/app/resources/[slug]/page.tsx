@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { Breadcrumbs } from "@/components/breadcrumbs";
@@ -68,6 +69,28 @@ function renderMdxBody(body: string) {
   }
 
   return body.split(/\n{2,}/).map((block) => {
+    const image = block.match(/^!\[([^\]]+)\]\(([^)]+)\)$/);
+
+    if (image) {
+      return (
+        <figure key={block} className="py-2">
+          <div className="relative aspect-[16/10] overflow-hidden bg-[var(--canvas)]">
+            <Image
+              src={image[2]}
+              alt={image[1]}
+              fill
+              sizes="(max-width: 1024px) 100vw, 56rem"
+              className="object-cover"
+              priority
+            />
+          </div>
+          <figcaption className="mt-4 text-[10px] uppercase tracking-[0.2em] text-[var(--ink-muted)]">
+            {image[1]}
+          </figcaption>
+        </figure>
+      );
+    }
+
     if (block.startsWith("# ")) {
       return (
         <h1
