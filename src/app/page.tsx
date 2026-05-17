@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { AboutSection } from "@/components/about-section";
+import { FeaturedServicesSection } from "@/components/featured-services-section";
 import { HeroSection } from "@/components/hero-section";
 import { JsonLd } from "@/components/json-ld";
 import { PhotoShowcase } from "@/components/photo-showcase";
@@ -33,6 +34,7 @@ export default function Home() {
         <AboutSection />
         <PhotoShowcase />
         <StoriesSection />
+        <FeaturedServicesSection />
         <VideoShowcase />
       </main>
     </>

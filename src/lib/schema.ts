@@ -1,4 +1,5 @@
 import { filmCollection, siteConfig } from "@/data/site";
+import type { ServicePageContent } from "@/lib/content/services";
 import type { Story } from "@/data/stories";
 import type { testimonials } from "@/data/testimonials";
 import { absoluteUrl, canonicalUrl } from "@/lib/seo";
@@ -16,7 +17,7 @@ export type FaqItem = {
 export function organizationSchema() {
   return {
     "@context": "https://schema.org",
-    "@type": ["LocalBusiness", "ProfessionalService"],
+    "@type": ["LocalBusiness", "ProfessionalService", "PhotographyStudio"],
     "@id": `${siteConfig.url}/#business`,
     name: siteConfig.name,
     url: siteConfig.url,
@@ -75,6 +76,27 @@ export function organizationSchema() {
         name,
       },
     })),
+  };
+}
+
+function optionalBusinessSchema(service: ServicePageContent) {
+  const business = service.business;
+  const latitude = business?.latitude === undefined ? undefined : Number(business.latitude);
+  const longitude = business?.longitude === undefined ? undefined : Number(business.longitude);
+
+  return {
+    ...(business?.phone ? { telephone: business.phone } : {}),
+    ...(business?.priceRange ? { priceRange: business.priceRange } : {}),
+    ...(business?.sameAs?.length ? { sameAs: business.sameAs } : {}),
+    ...(Number.isFinite(latitude) && Number.isFinite(longitude)
+      ? {
+          geo: {
+            "@type": "GeoCoordinates",
+            latitude,
+            longitude,
+          },
+        }
+      : {}),
   };
 }
 
@@ -156,6 +178,67 @@ export function serviceSchema(path: `/${string}`, faqs: FaqItem[]) {
     },
     faqSchema(faqs),
   ];
+}
+
+export function contentServiceSchema(service: ServicePageContent) {
+  const path = `/${service.slug}` as const;
+
+  return [
+    {
+      "@context": "https://schema.org",
+      "@type": ["ProfessionalService", "LocalBusiness", "PhotographyStudio"],
+      "@id": `${canonicalUrl(path)}#service`,
+      name: service.title,
+      serviceType: service.serviceType,
+      provider: {
+        "@id": `${siteConfig.url}/#business`,
+      },
+      areaServed: service.location.serviceAreas,
+      url: canonicalUrl(path),
+      image: absoluteUrl(service.seo.image.src),
+      description: service.seo.description,
+      address: {
+        "@type": "PostalAddress",
+        streetAddress: service.location.area,
+        addressLocality: service.location.city,
+        addressRegion: service.location.city,
+        addressCountry: "IN",
+      },
+      ...optionalBusinessSchema(service),
+      hasOfferCatalog: {
+        "@type": "OfferCatalog",
+        name: `${service.shortTitle} services`,
+        itemListElement: service.included.items.map((item) => ({
+          "@type": "Offer",
+          itemOffered: {
+            "@type": "Service",
+            name: item.title,
+            description: item.description,
+          },
+        })),
+      },
+    },
+    faqSchema(service.faqs),
+  ];
+}
+
+export function serviceImageGallerySchema(service: ServicePageContent) {
+  if (!service.gallery?.images.length) {
+    return null;
+  }
+
+  return {
+    "@context": "https://schema.org",
+    "@type": "ImageGallery",
+    "@id": `${canonicalUrl(`/${service.slug}`)}#gallery`,
+    name: service.gallery.heading,
+    image: service.gallery.images.map((image) => ({
+      "@type": "ImageObject",
+      contentUrl: absoluteUrl(image.src),
+      caption: image.caption,
+      description: image.alt,
+    })),
+  };
 }
 
 export function storyArticleSchema(story: Story) {

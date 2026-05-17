@@ -1,0 +1,202 @@
+{
+  "slug": "passport-photo-delhi",
+  "status": "published",
+  "isFeatured": true,
+  "serviceType": "Passport photo studio",
+  "title": "Passport Photo Studio in Delhi",
+  "shortTitle": "Passport Photo Delhi",
+  "seo": {
+    "title": "Passport Photo in Delhi",
+    "description": "Professional passport photos in Delhi by Sahu Studio, with print and digital copies for Indian passport, visa, ID, and document requirements.",
+    "keywords": [
+      "passport photo Delhi",
+      "passport size photo Delhi",
+      "visa photo Delhi",
+      "digital passport photo",
+      "passport photo studio Karkardooma"
+    ],
+    "image": {
+      "src": "/images/services/passport-photo-delhi/hero.jpg",
+      "alt": "Professional passport photo studio in Delhi by Sahu Studio",
+      "width": 1200,
+      "height": 1600
+    }
+  },
+  "hero": {
+    "eyebrow": "Document Photography",
+    "title": "Passport photos, handled with studio precision",
+    "dek": "Clean, correctly sized passport and visa photographs from a trusted Delhi studio, prepared with careful lighting, background control, and digital delivery when required.",
+    "image": {
+      "src": "/images/services/passport-photo-delhi/hero.jpg",
+      "alt": "Sahu Studio portrait setup for passport and document photos",
+      "width": 1200,
+      "height": 1600
+    },
+    "primaryCta": {
+      "label": "Book on WhatsApp",
+      "href": "https://wa.me/919555926912"
+    },
+    "secondaryCta": {
+      "label": "View wedding photography",
+      "href": "/wedding-photography-delhi-ncr"
+    }
+  },
+  "location": {
+    "city": "Delhi",
+    "area": "Karkardooma",
+    "serviceAreas": [
+      "Karkardooma",
+      "East Delhi",
+      "Preet Vihar",
+      "Anand Vihar",
+      "Vivek Vihar",
+      "Delhi NCR"
+    ]
+  },
+  "business": {
+    "phone": "+91 9555926912",
+    "priceRange": "$$",
+    "latitude": 28.6487,
+    "longitude": 77.3001,
+    "sameAs": [
+      "https://www.instagram.com/sahustudio1982/",
+      "https://www.youtube.com/@sahustudio1982"
+    ]
+  },
+  "editorial": {
+    "eyebrow": "Studio Note",
+    "heading": "A practical photograph can still be made with care",
+    "paragraphs": [
+      "Passport and visa photographs are small, but they are not casual. The lighting needs to be even, the expression natural, the background clean, and the crop precise enough to meet document requirements. At Sahu Studio, we treat document photography with the same discipline that has shaped our portrait work for decades.",
+      "The studio is based in Karkardooma, Delhi, and supports clients who need passport-size photographs for Indian passports, visas, ID cards, application forms, school documents, office records, and online submissions. We keep the process calm and efficient, with clear guidance before the photograph is taken so the final image looks professional without feeling harsh.",
+      "For families, students, working professionals, and travellers, the goal is simple: a correct photograph, delivered quickly, with the reassurance that details like size, background, crop, and digital format have been handled carefully."
+    ]
+  },
+  "gallery": {
+    "eyebrow": "Studio Details",
+    "heading": "Clean frames, accurate output",
+    "images": [
+      {
+        "src": "/images/services/passport-photo-delhi/gallery-01.jpg",
+        "alt": "Controlled studio lighting for document photography in Delhi",
+        "caption": "Even lighting for a clean, professional document photograph.",
+        "width": 1280,
+        "height": 853
+      },
+      {
+        "src": "/images/services/passport-photo-delhi/gallery-02.jpg",
+        "alt": "Professional photo editing and print preparation at Sahu Studio",
+        "caption": "Careful preparation for print and digital requirements.",
+        "width": 1280,
+        "height": 853
+      },
+      {
+        "src": "/images/services/passport-photo-delhi/gallery-03.jpg",
+        "alt": "Passport and visa photo service in Karkardooma Delhi",
+        "caption": "A local Delhi studio for passport, visa, and ID photographs.",
+        "width": 1280,
+        "height": 853
+      }
+    ]
+  },
+  "included": {
+    "eyebrow": "What We Prepare",
+    "heading": "Passport, visa, and document photo support",
+    "items": [
+      {
+        "title": "Indian passport photographs",
+        "description": "Passport-size photographs prepared with a clean background, balanced lighting, and print-ready sizing."
+      },
+      {
+        "title": "Visa and embassy photo formats",
+        "description": "Support for common visa photo requirements, including country-specific dimensions when provided by the client."
+      },
+      {
+        "title": "Digital copies",
+        "description": "Digital files for online forms, application portals, and email submission, prepared in a practical format."
+      },
+      {
+        "title": "Background correction",
+        "description": "Simple, natural background cleanup for document use while keeping the face and skin tone authentic."
+      }
+    ]
+  },
+  "process": {
+    "eyebrow": "How It Works",
+    "heading": "A clear studio process",
+    "steps": [
+      {
+        "title": "Confirm the requirement",
+        "description": "Share whether the photo is for an Indian passport, visa, ID, school, office, or online form."
+      },
+      {
+        "title": "Photograph with guidance",
+        "description": "We help with posture, expression, glasses, hair, and framing before taking the photograph."
+      },
+      {
+        "title": "Prepare print and digital files",
+        "description": "The image is cropped, checked, and prepared for the required print or digital use."
+      },
+      {
+        "title": "Collect or receive digitally",
+        "description": "Printed copies can be collected from the studio, and digital copies can be shared when requested."
+      }
+    ]
+  },
+  "faqs": [
+    {
+      "question": "What is passport photo size in India?",
+      "answer": "For Indian passport applications, the commonly used printed passport photo size is 2 x 2 inches, or 51 x 51 mm. Requirements can change by application type, so we recommend confirming the latest instruction on the official form or portal before printing."
+    },
+    {
+      "question": "Do you provide digital copies?",
+      "answer": "Yes. We can provide digital copies for online forms, email submission, and application portals along with printed passport-size photographs."
+    },
+    {
+      "question": "Can you support visa photo requirements?",
+      "answer": "Yes. We can prepare visa photographs for many common requirements. If a country or embassy has a specific size, background, or file-size instruction, share it with us before the photograph is prepared."
+    },
+    {
+      "question": "How quickly can photos be delivered?",
+      "answer": "Most standard passport and document photographs can be prepared quickly during a studio visit. Exact timing depends on quantity, digital requirements, and any special editing or formatting needed."
+    },
+    {
+      "question": "Do you edit backgrounds?",
+      "answer": "Yes. We can clean or adjust the background for document use while keeping the image natural and professional."
+    }
+  ],
+  "relatedServices": [
+    {
+      "title": "Wedding Photography in Delhi NCR",
+      "description": "Editorial wedding photography, portraits, and cinematic storytelling for families across Delhi NCR.",
+      "href": "/wedding-photography-delhi-ncr",
+      "image": "/images/showcase/showcase-01.jpg"
+    },
+    {
+      "title": "Wedding Films",
+      "description": "Cinematic wedding films shaped with emotion, movement, and refined direction.",
+      "href": "/wedding-films",
+      "image": "/images/video/feature-video.jpg"
+    }
+  ],
+  "relatedResources": [
+    {
+      "title": "Passport Photo Size in India",
+      "description": "A practical guide to sizes, background rules, and digital submission basics.",
+      "href": "/resources/passport-photo-size-india"
+    }
+  ],
+  "cta": {
+    "eyebrow": "Visit The Studio",
+    "heading": "Need a passport or visa photograph in Delhi?",
+    "body": "Message the studio with your requirement, preferred timing, and whether you need prints, digital files, or both.",
+    "primaryCta": {
+      "label": "WhatsApp Sahu Studio",
+      "href": "https://wa.me/919555926912"
+    },
+    "secondaryCta": {
+      "label": "Get directions",
+      "href": "https://maps.app.goo.gl/ehPLvRRLdpmJhM3V6"
+    }
+  }
+}

@@ -59,7 +59,7 @@ export const stories: Story[] = [
   filmTitle: "Ayush & Anchal: The Palace Vows",
   filmSummary:
     "A cinematic palace wedding film capturing elegant rituals, heartfelt vows, and timeless celebration moments.",
-  filmSrc: "/videos/hero1.mp4",
+  filmSrc: "https://www.youtube.com/watch?v=2DmUvBwv1vE",
   filmPoster: "/images/video/video-thumb-01.jpg",
   testimonial: {
     quote:
@@ -153,7 +153,7 @@ export const stories: Story[] = [
   filmTitle: "Beyond the Vows",
   filmSummary:
     "A cinematic wedding film capturing heartfelt moments, elegant details, and timeless emotions. Crafted for couples who value authentic memories and beautifully preserved celebrations.",
-  filmSrc: "/videos/hero1.mp4",
+  filmSrc: "https://www.youtube.com/watch?v=612zIagB65M",
   filmPoster: "/images/video/feature-video.jpg",
   testimonial: {
     quote:
@@ -247,7 +247,7 @@ export const stories: Story[] = [
   filmTitle: "Kedar & Vijeyata: Dilli 6",
   filmSummary:
     "A romantic pre-wedding film featuring candid moments, rain romance, and old Delhi charm.",
-  filmSrc: "/videos/hero1.mp4",
+  filmSrc: "https://www.youtube.com/watch?v=in4RMPlieJc",
   filmPoster: "/images/video/video-thumb-02.jpg",
   testimonial: {
     quote:

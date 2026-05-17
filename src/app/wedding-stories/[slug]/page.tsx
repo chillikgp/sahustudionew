@@ -83,6 +83,29 @@ function buildEditorialParagraphs(story: Story) {
   ];
 }
 
+function getYouTubeEmbedUrl(src: string) {
+  try {
+    const url = new URL(src);
+    const isYouTube =
+      url.hostname === "youtu.be" || url.hostname.endsWith("youtube.com");
+
+    if (!isYouTube) {
+      return null;
+    }
+
+    const videoId =
+      url.hostname === "youtu.be"
+        ? url.pathname.replace("/", "")
+        : url.searchParams.get("v");
+
+    return videoId
+      ? `https://www.youtube-nocookie.com/embed/${videoId}?rel=0&modestbranding=1`
+      : null;
+  } catch {
+    return null;
+  }
+}
+
 export default async function StoryPage({ params }: StoryPageProps) {
   const { slug } = await params;
   const story = storiesBySlug[slug];
@@ -99,6 +122,7 @@ export default async function StoryPage({ params }: StoryPageProps) {
   ] as const;
   const relatedStories = getRelatedStories(story);
   const editorialParagraphs = buildEditorialParagraphs(story);
+  const filmEmbedUrl = getYouTubeEmbedUrl(story.filmSrc);
 
   return (
     <>
@@ -258,14 +282,25 @@ export default async function StoryPage({ params }: StoryPageProps) {
               </div>
 
               <div className="reveal-up relative aspect-video w-full overflow-hidden">
-                <video
-                  className="h-full w-full object-cover"
-                  controls
-                  preload="metadata"
-                  poster={story.filmPoster}
-                  src={story.filmSrc}
-                  suppressHydrationWarning
-                />
+                {filmEmbedUrl ? (
+                  <iframe
+                    src={filmEmbedUrl}
+                    title={story.filmTitle}
+                    className="absolute inset-0 h-full w-full border-0"
+                    loading="lazy"
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                    allowFullScreen
+                  />
+                ) : (
+                  <video
+                    className="h-full w-full object-cover"
+                    controls
+                    preload="metadata"
+                    poster={story.filmPoster}
+                    src={story.filmSrc}
+                    suppressHydrationWarning
+                  />
+                )}
               </div>
             </div>
           </section>

@@ -5,6 +5,7 @@ import { PhilosophySection } from "@/components/philosophy-section";
 import { ExploreMore } from "@/components/explore-more";
 import { Breadcrumbs } from "@/components/breadcrumbs";
 import { JsonLd } from "@/components/json-ld";
+import { UtilityServicesLinks } from "@/components/utility-services-links";
 import { buildMetadata } from "@/lib/seo";
 import { breadcrumbSchema, serviceSchema, type FaqItem } from "@/lib/schema";
 
@@ -145,6 +146,8 @@ export default function PhotosPage() {
             </div>
           </div>
         </section>
+
+        <UtilityServicesLinks />
 
         <ExploreMore 
           cards={[
